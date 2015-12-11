@@ -44,6 +44,18 @@ h1, h2, h3, h4 {
 
 /**** Hero Wrapper *******/
 
+.align-left {
+  text-align: left !important;
+}
+
+.align-right {
+  text-align: right !important;
+}
+
+.align-center {
+  text-align: center !important;
+}
+
 .header {
   position: absolute;
   top: 0px;

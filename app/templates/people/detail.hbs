@@ -1,4 +1,7 @@
 <div class="detail-container">
+  <div class="top-panel">
+    {{link-to 'Back' 'people.find' class="back-btn"}}
+  </div>
   <div class="left-panel">
       <div class="profile-pic">
         <img src="images/dummy/ajain.png" alt="" height="128" width="128" data-profile-image="123"/>
@@ -7,6 +10,44 @@
   </div>
   <div class="right-panel">
     <div class="profile-content">
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label class="col-sm-12 control-label align-left">Username</label>
+          <div class="col-sm-12">
+            <p class="form-control-static">ajainvivek</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-12 control-label align-left">Location</label>
+          <div class="col-sm-12">
+            <p class="form-control-static">Bangalore</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-12 control-label align-left">Gender</label>
+          <div class="col-sm-12">
+            <p class="form-control-static">Male</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-12 control-label align-left">Last Seen</label>
+          <div class="col-sm-12">
+            <p class="form-control-static">10:41 PM</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="btn" id="contact-request">
+            Contact Request
+          </div>
+          <div class="btn" id="send-file">
+            Send File
+          </div>
+        </div>
+      </form>
 
     </div>
   </div>

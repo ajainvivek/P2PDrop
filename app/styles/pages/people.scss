@@ -72,4 +72,75 @@
   }
 
 }
+
+.detail-container {
+  .top-panel {
+    height: 60px;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+
+    .back-btn {
+      padding: 10px 20px;
+      background: $drop-green;
+      color: $drop-white;
+      line-height: 60px;
+      text-decoration: none;
+    }
+  }
+
+  .left-panel {
+    width: 300px;
+    height: 100%;
+    float: left;
+
+    .profile-pic {
+      height: 155px;
+      width: 128px;
+      margin: 20px auto;
+      cursor: pointer;
+      overflow: hidden;
+
+      .name {
+        color: $drop-dark-grey;
+        font-weight: 200;
+        font-size: 16px;
+        text-align: center;
+        line-height: 25px;
+        white-space: nowrap;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  .right-panel {
+    height: 100%;
+    border-left: 1px solid #ccc;
+    float: left;
+    padding: 20px;
+
+    .profile-content {
+      .control-label {
+        color: $drop-dark-grey;
+      }
+      .form-control-static {
+        color: $drop-dark-grey;
+        font-weight: 200;
+      }
+      .btn {
+        padding: 10px 0px;
+        width: 200px;
+        margin-left: 15px;
+        margin-top: 10px;
+        background: $drop-blue;
+        color: $drop-white;
+        text-decoration: none;
+        float: left;
+      }
+    }
+  }
+
+}
 /**************************/
