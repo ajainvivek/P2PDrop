@@ -1,0 +1,43 @@
+/******** About Styles ********/
+#about {
+  height: 100%;
+  width: 100%;
+
+  .about-content {
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+
+    .logo {
+      margin: 0px auto;
+      display: block;
+    }
+
+    h1 {
+      margin: 10px 0px;
+    }
+
+    .highlight {
+      color: $drop-blue;
+      font-size: 14px;
+    }
+  }
+  .bottom-right {
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    text-decoration: none;
+    color: $drop-dark-grey;
+
+    .highlight {
+      color: $drop-green;
+      font-size: 20px;
+    }
+  }
+}

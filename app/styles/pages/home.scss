@@ -1,6 +1,8 @@
 /**** Home *******/
 
 #home {
+  height: 100%;
+  width: 100%;
   padding-left: $sidebar-padding;
 
   #sidebar-wrapper {
@@ -51,6 +53,7 @@
           .header {
             color: $drop-green;
             font-weight: 200;
+            position: relative;
           }
       }
     }

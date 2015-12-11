@@ -1,11 +1,15 @@
 @import "bootstrap-variables";
 @import "bootstrap";
 @import "pages/home";
+@import "pages/about";
 
 /** Override Styles **/
 
 html, body {
   background: $drop-grey;
+  height: 100%;
+  width: 100%;
+  position: relative;
 }
 
 h1, h2, h3, h4 {
@@ -37,6 +41,21 @@ h1, h2, h3, h4 {
 /********************/
 
 /**** Hero Wrapper *******/
+
+.header {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: 999999;
+}
+
+.p2pdrop-liquid-wrapper {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding-top: 52px;
+}
 
 .hero-wrapper {
   background: $drop-grey;

@@ -44,7 +44,8 @@
     "ember-export-application-global": "^1.0.3",
     "ember-lodash": "0.0.6",
     "ember-moment": "4.1.0",
-    "ember-watson": "0.7.0"
+    "ember-watson": "0.7.0",
+    "liquid-fire": "0.22.0"
   },
   "main": "electron.js"
 }

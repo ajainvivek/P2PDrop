@@ -7,14 +7,14 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">
+        {{#link-to 'home' class="navbar-brand"}}
           <img src="images/logo/p2pdrop-logo-32.png" alt="" height="32" width="32" />
-        </a>
+        {{/link-to}}
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="#">Find People</a></li>
-          <li><a href="#about">About</a></li>
+          <li><a href="#find">Find People</a></li>
+          <li>{{link-to 'About' 'about'}}</li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
