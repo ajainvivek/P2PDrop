@@ -1,0 +1,75 @@
+/****** People Styles ******/
+
+#people-search-input {
+    margin:0;
+    margin-top: 10px;
+    padding: 0;
+
+    .search {
+      background: url("../images/icons/search.png");
+      height: 16px;
+      width: 16px;
+    }
+
+    .search-bg {
+      background: $drop-green;
+    }
+
+    .search-query {
+        padding-right: 4px;
+        padding-left: 15px;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        height: 40px;
+    }
+
+    button {
+        border: 0;
+        background: none;
+        /** belows styles are working good */
+        padding: 2px 5px;
+        margin-top: 2px;
+        position: relative;
+        left: -36px;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }
+
+    .search-query:focus + button {
+        z-index: 3;
+    }
+}
+
+.tile-wrapper {
+  margin-top: 20px;
+
+  .tile {
+    height: 155px;
+    width: 128px;
+    float: left;
+    margin: 20px;
+    cursor: pointer;
+    overflow: hidden;
+
+    .name {
+      color: $drop-dark-grey;
+      font-weight: 200;
+      font-size: 16px;
+      text-align: center;
+      line-height: 25px;
+      white-space: nowrap;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+}
+/**************************/
