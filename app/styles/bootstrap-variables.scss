@@ -1,3 +1,19 @@
-$navbar-default-bg: #312312;
-$light-orange: #ff8c00;
-$navbar-default-color: $light-orange;
+$drop-blue: #04A9EB;
+$drop-grey: #EDEDED;
+$drop-white: #FFFFFF;
+$drop-green: #76bd27;
+
+$sidebar-padding: 300px;
+
+/** Navbar Styles ****/
+$navbar-default-bg: $drop-blue;
+$navbar-default-color: $drop-white;
+$navbar-border-radius: 0px;
+$navbar-default-color: $drop-white;
+$navbar-default-brand-color: $drop-white;
+$navbar-default-toggle-border-color: $drop-white;
+$nav-tabs-border-color: $drop-white;
+$navbar-default-toggle-icon-bar-bg: $drop-white;
+$navbar-margin-bottom: 0px;
+$navbar-default-brand-hover-bg: rgba(0, 0, 0, 0.4);
+$navbar-default-border: $drop-blue;

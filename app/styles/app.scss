@@ -1,2 +1,45 @@
 @import "bootstrap-variables";
 @import "bootstrap";
+@import "pages/home";
+
+/** Override Styles **/
+
+html, body {
+  background: $drop-grey;
+}
+
+h1, h2, h3, h4 {
+  padding: 0px;
+  margin: 0px;
+}
+
+.container-fluid {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.navbar-brand {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 8px 15px;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: $drop-white;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  color: $drop-grey;
+}
+
+.navbar-toggle:hover, .navbar-toggle:focus {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+/********************/
+
+/**** Hero Wrapper *******/
+
+.hero-wrapper {
+  background: $drop-grey;
+}
+
+/************************/
