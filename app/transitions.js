@@ -27,6 +27,8 @@ export default function () {
     this.useAndReverse('explode', {
       matchBy: 'data-profile-image',
       use: ['fly-to', {duration}]
+    },{
+      use: "fade"
     })
   );
 
