@@ -4,6 +4,6 @@ var inject = Ember.inject;
 export default Ember.Controller.extend({
   webrtc : inject.service(),
   init : function () {
-    this.get("webrtc").initialize();
+    //this.get("webrtc").initialize();
   }
 });

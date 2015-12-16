@@ -93,21 +93,45 @@
     }
 
     #dropzone-wrapper {
-      .dropzone {
-        width: 300px;
-        height: 300px;
-        position: absolute;
-        top:0;
-        bottom: 0;
-        left: 320px;
-        right: 0;
-        margin: auto;
 
-          .header {
-            color: $drop-green;
-            font-weight: 200;
-            position: relative;
+      .dropzone {
+        height: 100%;
+        width: 100%;
+
+        .dropzone-content {
+          width: 300px;
+          height: 300px;
+          position: absolute;
+          top:0;
+          bottom: 0;
+          left: 320px;
+          right: 0;
+          margin: auto;
+          padding-left: 20px;
+          padding-top: 8px;
+          border: 2px dashed #ccc;
+
+            .header {
+              color: $drop-green;
+              font-weight: 200;
+              position: relative;
+            }
+        }
+
+        .dropzone-widget {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+
+          #p2p-file-drop-zone {
+            height: 100%;
+            width: 100%;
           }
+
+          #p2p-files {
+            display: none;
+          }
+        }
       }
     }
  }
