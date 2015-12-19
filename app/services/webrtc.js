@@ -7,6 +7,7 @@ export default Ember.Service.extend({
   peerConnection : null,  // This is our WebRTC connection
   dataChannel : null,     // This is our outgoing data channel within WebRTC
   running : false,        // Keep track of our connection state
+  file : null, //File to be shared
 
   // Use Google's public servers for STUN
   // STUN is a component of the actual WebRTC connection
@@ -20,10 +21,13 @@ export default Ember.Service.extend({
 
   id : Math.random().toString().replace('.', ''),
 
-  initialize : function () {
+  initialize : function (file) {
     // Configure, connect, and set up Firebase
     // You probably want to replace the text below with your own Firebase URL
     const firebaseUrl = 'https://p2pdrop.firebaseio.com/';
+
+    this.file = file;
+
     this.database = new Firebase(firebaseUrl);
     this.announceChannel = this.database.child('announce');
     this.signalChannel = this.database.child('messages').child(this.id);
@@ -179,8 +183,9 @@ export default Ember.Service.extend({
     // This is called on an incoming message from our peer
     // You probably want to overwrite this to do something more useful!
     handleDataChannelMessage : function(event) {
-      console.log('Recieved Message: ' + event.data);
-      document.write(event.data + '<br />');
+      console.log('Recieved Message: ');
+      console.log(event.data);
+      //document.write(event.data + '<br />');
     },
 
     // This is called when the WebRTC sending data channel is offically 'open'
@@ -209,7 +214,7 @@ export default Ember.Service.extend({
     // Function to initiate the WebRTC peerconnection and dataChannel
     initiateWebRTCState : function() {
       this.peerConnection = new RTCPeerConnection(this.servers);
-      this.peerConnection.ondatachannel = this.handleDataChannel;
+      this.peerConnection.ondatachannel = this.handleDataChannel.bind(this);
       this.dataChannel = this.peerConnection.createDataChannel('myDataChannel');
       this.dataChannel.onmessage = this.handleDataChannelMessage;
       this.dataChannel.onopen = this.handleDataChannelOpen.bind(this);
