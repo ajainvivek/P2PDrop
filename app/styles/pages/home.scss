@@ -98,6 +98,57 @@
         height: 100%;
         width: 100%;
 
+        .thumbnail-slider-wrapper {
+          height: 150px;
+          width: 100%;
+
+          .thumbnail-slider {
+            height: 100%;
+            width: 100%;
+            padding: 5px;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            white-space: nowrap;
+
+            .card {
+              height: 120px;
+              width: 120px;
+              background: #FFF;
+              margin: 10px;
+              padding: 10px;
+              border-radius: 5px;
+              -webkit-box-shadow: -1px 0px 0px 0px rgba(50, 50, 50, 0.2);
+              -moz-box-shadow: -1px 0px 0px 0px rgba(50, 50, 50, 0.2);
+              box-shadow: -1px 0px 0px 0px rgba(50, 50, 50, 0.2);
+              display: inline-block;
+              cursor: pointer;
+
+              img {
+                margin: 10px auto;
+                display: block;
+                height: 64px;
+                width: 64px;
+              }
+
+              h3 {
+                font-size: 14px;
+                font-weight: 300;
+                color: $drop-dark-grey;
+                text-align: center;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                height: 16px;
+                width: 100%;
+                margin: 5px 0;
+              }
+
+              &.selected {
+                border: 1px solid $drop-blue;
+              }
+            }
+          }
+        }
+
         .dropzone-content {
           width: 300px;
           height: 300px;
@@ -111,7 +162,7 @@
           padding-top: 8px;
           border: 2px dashed #ccc;
           border-radius: 6px;
-          
+
             .header {
               color: $drop-green;
               font-weight: 200;
