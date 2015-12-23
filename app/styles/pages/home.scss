@@ -113,7 +113,7 @@
             .card {
               height: 120px;
               width: 120px;
-              background: #FFF;
+              background: $drop-white;
               margin: 10px;
               padding: 10px;
               border-radius: 5px;
@@ -182,6 +182,34 @@
 
           #p2p-files {
             display: none;
+          }
+        }
+
+        .action-bar-wrapper {
+          position: absolute;
+          bottom: 0;
+          height: 60px;
+          width: 100%;
+          border-top: 1px solid #ccc;
+
+          .action-bar {
+            height: 60px;
+            width: calc(100% - 300px);
+
+            .container {
+              height: 100%;
+              width: 100%;
+              display: flex;
+              margin: 0px auto;
+              padding: 10px;
+
+              .btn {
+                margin: 0px auto;
+                height: 40px;
+                width: 200px;
+              }
+
+            }
           }
         }
       }
