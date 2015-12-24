@@ -26,6 +26,8 @@ export default Ember.Component.extend({
       p2p.pubsub.publish("notify-action-bar", changedFile);
       self.highlightSelected(guid);
     });
+
+    this.highlightSelected();
   },
 
   guid: function () {
@@ -44,8 +46,10 @@ export default Ember.Component.extend({
     if (prevFile) {
       prevFile.set("selected", false);
     }
-    let changedFile = files.findProperty("guid", guid);
-    changedFile.set("selected", true);
+    if (guid) {
+      let changedFile = files.findProperty("guid", guid);
+      changedFile.set("selected", true);
+    }
   },
 
   actions : {

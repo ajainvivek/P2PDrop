@@ -218,7 +218,6 @@
           bottom: 0;
           height: 60px;
           width: 100%;
-          border-top: 1px solid #ccc;
 
           .action-bar {
             height: 60px;
@@ -230,6 +229,7 @@
               display: flex;
               margin: 0px auto;
               padding: 10px;
+              border-top: 1px solid #ccc;
 
               .btn {
                 margin: 0px auto;
