@@ -2,11 +2,11 @@ import Ember from "ember";
 var inject = Ember.inject;
 
 export default Ember.Controller.extend({
-  swebrtc : inject.service(),
+  webrtc : inject.service(),
   init : function () {
-    var webrtc = this.get("swebrtc");
+    var webrtc = this.get("webrtc");
     //Initialize
-    this.get("swebrtc").initialize();
+    this.get("webrtc").initialize();
 
     webrtc.joinRoom();
 
@@ -25,7 +25,6 @@ export default Ember.Controller.extend({
 
       // get notified when file is done
       receiver.on('receivedFile', function (file, metadata) {
-          console.log(file.type);
           console.log('received file', metadata.name, metadata.size);
           p2p.pubsub.publish("p2p-file-received", file);
           // close the channel

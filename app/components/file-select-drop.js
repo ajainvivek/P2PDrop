@@ -3,7 +3,7 @@ var inject = Ember.inject;
 
 export default Ember.Component.extend({
   file: inject.service(),
-  swebrtc : inject.service(),
+  webrtc : inject.service(),
   didInsertElement: function () {
     var self = this;
     var dropZone = $("#p2p-file-drop-zone");
@@ -11,7 +11,7 @@ export default Ember.Component.extend({
     //Handle File Select Event
     $("#p2p-files").on("change", function (evt) {
       self.get("file").read(evt).then(function (data) {
-        self.get("swebrtc").sendFile(data[0].file);
+        self.get("webrtc").sendFile(data[0].file);
       });
     });
 
