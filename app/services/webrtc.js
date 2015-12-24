@@ -181,17 +181,18 @@ export default Ember.Service.extend({
     },
 
     // This is called on an incoming message from our peer
-    // You probably want to overwrite this to do something more useful!
     handleDataChannelMessage : function(event) {
       console.log('Recieved Message: ');
       console.log(event.data);
-      //document.write(event.data + '<br />');
+      p2p.pubsub.publish("p2p-message-received", { //Publish message once data is received
+        data : event.data
+      });
     },
 
     // This is called when the WebRTC sending data channel is offically 'open'
     handleDataChannelOpen : function() {
       console.log('Data channel created!');
-      this.dataChannel.send('Hello! I am ' + this.id);
+      //this.dataChannel.send('Hello! I am ' + this.id);
     },
 
     // Called when the data channel has closed

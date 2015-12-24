@@ -32,4 +32,11 @@ export default function () {
     })
   );
 
+  this.transition(
+    this.hasClass('action-bar'),
+    this.toValue(true),
+    this.use('toUp', {duration}),
+    this.reverse('toDown', {duration})
+  );
+
 }

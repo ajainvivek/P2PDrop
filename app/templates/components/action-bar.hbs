@@ -1,6 +1,8 @@
-<div class="action-bar">
-    <div class="container">
-      <button type="button" class="btn btn-primary">Preview</button>
-      <button type="button" class="btn btn-primary">Download</button>
-    </div>
-</div>
+{{#liquid-if isFileSelected class="action-bar"}}
+  <div class="container">
+    <button type="button" class="btn btn-primary">Preview</button>
+    <a href="{{url}}" download="{{name}}" type="button" class="btn btn-primary">Download</a>
+  </div>
+{{else}}
+  <label>Drop and Share Files Instantly</label>
+{{/liquid-if}}

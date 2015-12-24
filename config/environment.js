@@ -16,7 +16,13 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
+    contentSecurityPolicy : {
+      'default-src': "'none'",
+  	  'style-src': "'self' 'unsafe-inline' 'unsafe-eval'",
+      'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
+      'connect-src': "'self' https://sandbox.simplewebrtc.com/socket.io/*"
+  	}
   };
 
   if (environment === 'development') {
@@ -41,16 +47,6 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
   }
-
-  ENV.contentSecurityPolicy = {
-    'default-src': "'none'",
-    'script-src': "'self' localhost:49152 0.0.0.0:49152",
-    'font-src': "'self'",
-    'connect-src': "'self'",
-    'img-src': "'self'",
-    'style-src': "'self'",
-    'media-src': "'self'"
-  };
 
   return ENV;
 };

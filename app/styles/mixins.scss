@@ -1,0 +1,5 @@
+@mixin max-height($max) {
+  @media (max-height: $max){
+    @content;
+  }
+}
