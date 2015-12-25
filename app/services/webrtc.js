@@ -18,7 +18,8 @@ export default Ember.Service.extend({
                 OfferToReceiveAudio: false,
                 OfferToReceiveVideo: false
             }
-        }
+        },
+        url: "https://p2pdrop-signalling.herokuapp.com/"
     }));
   },
 
@@ -39,6 +40,37 @@ export default Ember.Service.extend({
         peer.on('fileTransfer', function (metadata, receiver) {
             callback(metadata, receiver);
         });
+
+        //TODO: Move to status bar while sending file disable file input once completed enable
+        // show the ice connection state
+        if (peer && peer.pc) {
+            peer.pc.on('iceConnectionStateChange', function (event) {
+                var state = peer.pc.iceConnectionState;
+                console.log('state', state);
+                switch (state) {
+                  case 'checking':
+                      Ember.Logger.log('Connecting to peer...');
+                      break;
+                  case 'connected':
+                  case 'completed': // on caller side
+                      Ember.Logger.log('Connection established.');
+                      break;
+                  case 'disconnected':
+                      Ember.Logger.log('Disconnected.');
+                      break;
+                  case 'failed':
+                      // not handled here
+                      break;
+                  case 'closed':
+                      Ember.Logger.log('Connection closed.');
+
+                      // disable file sending
+                      // FIXME: remove container, but when?
+                      break;
+                }
+            });
+        }
+
     });
   },
 
@@ -60,7 +92,21 @@ export default Ember.Service.extend({
   //Send File
   sendFile: function (file) {
     var peer = this.get("peer");
-    peer.sendFile(file);
+    var sender = peer.sendFile(file);
+
+    // hook up send progress
+    sender.on('progress', function (bytesSent) {
+        Ember.Logger.log(bytesSent);
+    });
+    // sending done
+    sender.on('sentFile', function () {
+        Ember.Logger.log("File Sent");
+        //enable file attribute after file is sent
+    });
+    // receiver has actually received the file
+    sender.on('complete', function () {
+        // safe to disconnect now
+    });
   }
 
 });

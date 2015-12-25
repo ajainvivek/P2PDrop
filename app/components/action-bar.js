@@ -15,6 +15,7 @@ export default Ember.Component.extend({
       self.set("url", data.url);
     });
     this.get("ips").getLocalIps().then(function (data) {
+      console.log(data);
       self.set("localIp", data[0]);
     });
   },
