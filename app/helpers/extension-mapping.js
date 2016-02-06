@@ -32,7 +32,7 @@ export default Ember.Helper.helper(function(params, hash) {
       key: "compressed",
       value: ["zip", "rar", "7z"]
     }];
-    
+
   let type = _.filter(extensionMap, _.matches({ value: [extension]}));
   let typeName;
 

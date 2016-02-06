@@ -4,6 +4,11 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'p2pdrop',
     environment: environment,
+    contentSecurityPolicy: { 'connect-src': "'self' https://auth.firebase.com wss://*.firebaseio.com" },
+    firebase: 'https://p2pdrop.firebaseio.com/',
+    'simple-auth': {
+      serverTokenRevocationPoint: '/revoke'
+    },
     baseURL: '/',
     locationType: process.env.EMBER_CLI_ELECTRON ? 'hash' : 'auto',
     EmberENV: {
@@ -21,8 +26,9 @@ module.exports = function(environment) {
       'default-src': "'none'",
   	  'style-src': "'self' 'unsafe-inline' 'unsafe-eval'",
       'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
-      'connect-src': "'self' https://sandbox.simplewebrtc.com/socket.io/*"
-  	}
+      'connect-src': "'self' wss://*.firebaseio.com https://*.firebase.com https://sandbox.simplewebrtc.com/socket.io/*",
+      'font-src': "'self' https://fonts.gstatic.com"
+    }
   };
 
   if (environment === 'development') {
