@@ -26,7 +26,7 @@ module.exports = function(environment) {
       'default-src': "'none'",
   	  'style-src': "'self' 'unsafe-inline' 'unsafe-eval'",
       'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
-      'connect-src': "'self' wss://*.firebaseio.com https://*.firebase.com https://sandbox.simplewebrtc.com/socket.io/*",
+      'connect-src': "'self' wss://*.firebaseio.com https://*.firebase.com https://sandbox.simplewebrtc.com/socket.io/* wss://tracker.btorrent.xyz/",
       'font-src': "'self' https://fonts.gstatic.com"
     }
   };

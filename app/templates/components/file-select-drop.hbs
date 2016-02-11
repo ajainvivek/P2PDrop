@@ -1,3 +1,3 @@
-<div id="p2p-file-drop-zone" {{action 'triggerFileSelect'}}>
-  <input type="file" id="p2p-files" name="files[]" multiple/>
+<div id="p2p-file-drop-zone" {{action 'triggerFileSelect' on="click"}} {{action 'onDragOver' on="dragOver"}} {{action 'onDragLeave' on="dragLeave"}} {{action 'onDrop' on="drop"}}>
+  <input type="file" id="p2p-files" name="files[]" multiple {{action 'onFileSelect' on="change"}}/>
 </div>

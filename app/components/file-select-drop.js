@@ -1,50 +1,55 @@
 import Ember from "ember";
-var inject = Ember.inject;
+const {
+  Component,
+  inject
+} = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   file: inject.service(),
-  webrtc : inject.service(),
   didInsertElement: function () {
-    var self = this;
-    var dropZone = $("#p2p-file-drop-zone");
-
-    //Handle File Select Event
-    $("#p2p-files").on("change", function (evt) {
-      self.get("file").read(evt).then(function (data) {
-        self.get("webrtc").sendFile(data[0].file);
-      });
-    });
-
-    //Bind File Select Event
     $("#p2p-files").on("click", function (evt) {
       evt.stopPropagation();
     });
-
-    //Bind Drag & Drop Event
-    dropZone.on('dragover', function (evt) {
-      self.handleDragOver(evt);
+  },
+  actions : {
+    //Trigger File Select
+    triggerFileSelect: function () {
+      $("#p2p-files").trigger("click");
+    },
+    //Handle File Select Event
+    onFileSelect : function () {
+      event.stopPropagation();
+      let self = this;
+      this.get("file").read(event).then(function (data) {
+        self.sendAction("onFileSelect", data);
+      });
+    },
+    //On Drag Over
+    onDragOver : function () {
+      event.preventDefault();
+      event.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
       $(".dropzone-content").css({
         border: "2px dashed #04A9EB"
       });
-    });
-    dropZone.on('dragleave', function (evt) {
+    },
+    //On Drag Leave
+    onDragLeave : function () {
       $(".dropzone-content").css({
         border: "2px dashed #CCC"
       });
-    });
-    dropZone.on('drop', function (evt) {
+    },
+    //On Drop Of File
+    onDrop  : function () {
+      event.preventDefault();
+      let self = this;
+
       $(".dropzone-content").css({
         border: "2px dashed #CCC"
       });
-    });
-  },
-  handleDragOver: function (evt) {
-    evt.preventDefault();
-    evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
-  },
-  actions : {
-    triggerFileSelect: function () {
-      $("#p2p-files").trigger("click");
+
+      this.get("file").read(event).then(function (data) {
+        self.sendAction("onFileSelect", data);
+      });
     }
   }
 });

@@ -7,6 +7,7 @@ module.exports = function(defaults) {
   });
 
   app.import('vendor/simplewebrtc-v2.js');
+  app.import('vendor/webtorrent.min.js');
   app.import('bower_components/firebase/firebase.js');
   //app.import('vendor/webrtc/adapter.js');
 
