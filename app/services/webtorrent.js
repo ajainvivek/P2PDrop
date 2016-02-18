@@ -14,14 +14,14 @@ export default Service.extend({
 		}
 		return this.get("client");
 	},
-	download : function (magnetURI) {
+	download : function (magnetURI, callback) {
 		let client = this.torrentClient();
 
 		return new RSVP.Promise(function (resolve, reject) {
 			client.add("magnet:?xt=urn:btih:" + magnetURI, function (torrent) {
 				// Got torrent metadata!
 				console.log('Client is downloading:', torrent.infoHash)
-
+				callback(torrent);
 				resolve(torrent.files);
 			});
 		});

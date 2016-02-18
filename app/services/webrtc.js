@@ -3,10 +3,10 @@
 import Ember from "ember";
 
 export default Ember.Service.extend({
-  filetransfer: null,
+  webrtc: null,
   peer: null,
   initialize : function () {
-    this.set("filetransfer", new SimpleWebRTC({
+    this.set("webrtc", new SimpleWebRTC({
         // we don't do video
         localVideoEl: '',
         remoteVideosEl: '',
@@ -23,21 +23,38 @@ export default Ember.Service.extend({
     }));
   },
 
+  //On message received
+  onMessageReceived : function (callback) {
+    var webrtc = this.get("webrtc");
+    webrtc.connection.on('message', function(data){
+      if(data.type === 'chat'){
+        console.log('chat received',data);
+        callback(data);
+      }
+    });
+  },
+
+  //Send chat message
+  sendChatMessage : function (msg) {
+    var webrtc = this.get("webrtc");
+    webrtc.sendToAll('chat', {message: msg, nick: webrtc.config.nick});
+  },
+
   //Join Room
-  joinRoom: function () {
-    var filetransfer = this.get("filetransfer");
-    filetransfer.joinRoom('test');
+  joinRoom: function (room) {
+    var webrtc = this.get("webrtc");
+    webrtc.joinRoom(room);
   },
 
   //Create Peer
   createPeer: function (callback) {
     var self = this;
-    var filetransfer = this.get("filetransfer");
+    var webrtc = this.get("webrtc");
     // Called when a peer is created
-    filetransfer.on('createdPeer', function (peer) {
+    webrtc.on('createdPeer', function (peer) {
         self.set("peer", peer);
-        // receiving an incoming filetransfer
-        peer.on('fileTransfer', function (metadata, receiver) {
+        // receiving an incoming webrtc
+        peer.on('webrtc', function (metadata, receiver) {
             callback(metadata, receiver);
         });
 
@@ -76,15 +93,15 @@ export default Ember.Service.extend({
 
   //On File Transfer
   onErrorState: function (callback) {
-    var filetransfer = this.get("filetransfer");
+    var webrtc = this.get("webrtc");
 
     // local p2p/ice failure
-    filetransfer.on('iceFailed', function (peer) {
+    webrtc.on('iceFailed', function (peer) {
         callback('Connection failed.');
     });
 
     // remote p2p/ice failure
-    filetransfer.on('connectivityError', function (peer) {
+    webrtc.on('connectivityError', function (peer) {
         callback('Connection remote fail');
     });
   },

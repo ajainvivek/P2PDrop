@@ -8,46 +8,44 @@ const {
 
 export default Controller.extend({
   webtorrent : inject.service(),
+  webrtc : inject.service(),
   init : function () {
-    // var webrtc = this.get("webrtc");
-    // //Initialize
-    // this.get("webrtc").initialize();
+    let webrtc = this.get("webrtc");
+    let webtorrent = this.get("webtorrent");
+    let self = this;
 
-    // webrtc.joinRoom();
+    //Initialize
+    this.get("webrtc").initialize();
 
-    // webrtc.createPeer(function (metadata, receiver) {
-    //   console.log('incoming filetransfer', metadata.name, metadata);
+    //Render thumbnail card
+    let renderCard = function (torrent) {
+      let thumbnailContext = self.get("thumbnailContext");
+      thumbnailContext.renderCard.call(thumbnailContext, torrent);
+    };
 
-    //   p2p.pubsub.publish("p2p-file-incoming", metadata);
-
-    //   receiver.on('progress', function (bytesReceived) {
-    //       p2p.pubsub.publish("p2p-file-inprogress", {
-    //         bytesReceived: bytesReceived,
-    //         size: metadata.size
-    //       });
-    //       console.log('receive progress', bytesReceived, 'out of', metadata.size);
-    //   });
-
-    //   // get notified when file is done
-    //   receiver.on('receivedFile', function (file, metadata) {
-    //       console.log('received file', metadata.name, metadata.size);
-    //       p2p.pubsub.publish("p2p-file-received", file);
-    //       // close the channel
-    //       receiver.channel.close();
-    //   });
-    // });
+    webrtc.joinRoom("test");
+    webrtc.onMessageReceived(function (data) {
+      webtorrent.download(data.payload.message, renderCard).then(function (file) {
+        let thumbnailContext = self.get("thumbnailContext");
+        let actionContext = self.get("actionContext");
+        thumbnailContext.appendFile.call(thumbnailContext, file[0], actionContext.notifyFileSelect.bind(actionContext));
+      });
+    });
   },
   actions : {
     sendFile : function (data) {
-      var webtorrent = this.get("webtorrent");
+      let webtorrent = this.get("webtorrent");
+      let webrtc = this.get("webrtc");
       webtorrent.seed(data[0].file).then(function (hash) {
-        Logger.debug(hash);
-        webtorrent.download(hash).then(function (file) {
-          file[0].appendTo('body');
-        });
+        webrtc.sendChatMessage(hash);
       }, function () {
         Logger.debug("error state");
       });
+    },
+    changeSelectedFile : function (file) {
+      let thumbnailContext = this.get("thumbnailContext");
+      let actionContext = this.get("actionContext");
+      thumbnailContext.appendFile.call(thumbnailContext, file, actionContext.notifyFileSelect.bind(actionContext));
     }
   }
 });
