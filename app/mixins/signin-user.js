@@ -1,7 +1,7 @@
 import Ember from 'ember';
 const {
   Mixin
-  } = Ember;
+} = Ember;
 
 export default Mixin.create({
   authenticateUser(email, password) {
@@ -9,7 +9,7 @@ export default Mixin.create({
       'email': email,
       'password': password
     }).then( () => {
-      this.transitionToRoute('index');
-  });
+      this.transitionToRoute('home');
+    });
   }
 });

@@ -1,0 +1,7 @@
+<div class="profile-pic" {{action 'triggerFileSelect' on="click"}}>
+  <div class="profile-img">
+    <img src={{profilePic.link}} alt="" height="128" width="128"/>
+    <h4> CHANGE </h4>
+  </div>
+  <input type="file" id="imgSelector" name="files[]" accept="image/*" {{action 'uploadImage' on="change"}}/>
+</div>

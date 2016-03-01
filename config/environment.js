@@ -9,6 +9,9 @@ module.exports = function(environment) {
     'simple-auth': {
       serverTokenRevocationPoint: '/revoke'
     },
+    imgur: {
+      clientId: '644aded71822622'
+    },
     baseURL: '/',
     locationType: process.env.EMBER_CLI_ELECTRON ? 'hash' : 'auto',
     EmberENV: {
@@ -26,7 +29,8 @@ module.exports = function(environment) {
       'default-src': "'none'",
   	  'style-src': "'self' 'unsafe-inline' 'unsafe-eval'",
       'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
-      'connect-src': "'self' wss://*.firebaseio.com https://*.firebase.com https://sandbox.simplewebrtc.com/socket.io/* wss://tracker.btorrent.xyz/",
+      'img-src': "'self' https://i.imgur.com/",
+      'connect-src': "'self' http://fonts.gstatic.com wss://*.firebaseio.com https://*.firebase.com https://sandbox.simplewebrtc.com/socket.io/* wss://tracker.btorrent.xyz/",
       'font-src': "'self' https://fonts.gstatic.com"
     }
   };

@@ -1,0 +1,57 @@
+#signup {
+  .center {
+    margin: 0px auto;
+    text-align: center;
+    display: table;
+  }
+
+  .profile-pic {
+    margin: 10px;
+
+    img {
+      border: 1px solid $drop-green;
+    }
+
+    h4 {
+      background: #ccc;
+      padding: 3px;
+    }
+
+    input {
+      display: none;
+    }
+  }
+
+  .form-wrapper {
+
+    .label-text {
+      margin-left: 12px;
+      color: rgba(0, 0, 0, 0.26);
+      font-weight: bold;
+    }
+
+    md-input-container.md-default-theme > md-icon {
+      color: rgba(0, 0, 0, 0.54);
+    }
+
+    .misc {
+      margin-bottom: 26px;
+
+      .right {
+        float: left;
+        margin: 5px 0;
+      }
+
+      .left {
+        margin-left: 35px;
+        border-bottom: 1px solid #ccc;
+        text-shadow: none;
+        color: rgba(0, 0, 0, 0.26);
+        font-weight: bold;
+        .paper-switch {
+          margin: 5px !important;
+        }
+      }
+    }
+  }
+}

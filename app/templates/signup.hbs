@@ -1,8 +1,42 @@
-{{input value=name placeholder='Screen Name'}}
-{{input value=email type='email' placeholder='Email'}}
-{{input value=password type='password' placeholder='Password'}}
-{{input value=passwordConfirmation type='password' placeholder='Password Confirmation'}}
-
-<button id="singup" {{action "signup"}}>
-    Sign Up
-</button>
+<div class="row" id="signup">
+  <div class="center">
+    {{profile-pic profilePic=profilePic imageUploaded=(action 'setProfilePic')}}
+  </div>
+  <div class="form-wrapper">
+    {{#paper-list}}
+      {{#paper-item class="col-xs-12 col-md-12"}}
+        <div class="fill-width">
+          {{paper-input label="Name (required)" value=name icon="person" icon-class="name" required=true}}
+        </div>
+      {{/paper-item}}
+      {{#paper-item class="col-xs-12 col-md-12"}}
+        <div class="fill-width">
+          {{paper-input label="Email (required)" type="email" value=email icon="email" icon-class="email" required=true customValidation=emailValidation}}
+        </div>
+      {{/paper-item}}
+      {{#paper-item class="col-xs-12 col-md-12"}}
+      <div class="fill-width misc">
+        <div class="right">
+          {{paper-icon "face"}}
+        </div>
+        <div class="left">
+          {{#paper-switch checked=isMale}} {{gender}} {{/paper-switch}}
+        </div>
+      </div>
+      {{/paper-item}}
+      {{#paper-item class="col-xs-12 col-md-12"}}
+        <div class="fill-width">
+          {{paper-input value=password label="Password (required)" type="password" icon="https" icon-class="https" required=true}}
+        </div>
+      {{/paper-item}}
+      {{#paper-item class="col-xs-12 col-md-12"}}
+        <div class="fill-width">
+          {{paper-input value=passwordConfirmation label="Retype Password (required)" type="password" icon="https" icon-class="https" required=true}}
+        </div>
+      {{/paper-item}}
+    {{/paper-list}}
+  </div>
+  <div class="center col-xs-12 col-md-12">
+    {{#paper-button raised=true action="signup"}}Sign Up{{/paper-button}}
+  </div>
+</div>

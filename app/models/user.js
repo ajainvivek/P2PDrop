@@ -3,10 +3,11 @@ const {
   attr,
   hasMany,
   Model
-  } = DS;
+} = DS;
 
 export default Model.extend({
-  avatar: attr('string'),
+  profilePic: attr(),
   name:   attr('string'),
-  online: attr('string')
+  online: attr('string'),
+  gender: attr('string')
 });

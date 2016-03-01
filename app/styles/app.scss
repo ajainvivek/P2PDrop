@@ -1,10 +1,12 @@
 @import "bootstrap-variables";
 @import "bootstrap";
+@import "ember-paper";
 @import "hover";
 @import "mixins";
 @import "pages/home";
 @import "pages/about";
 @import "pages/people";
+@import "pages/signup";
 
 /** Override Styles **/
 
@@ -74,6 +76,15 @@ h1, h2, h3, h4 {
 
 .hero-wrapper {
   background: $drop-grey;
+}
+
+.form-wrapper {
+  margin: 20px auto;
+  width: 80%;
+}
+
+.fill-width {
+  width: 100%;
 }
 
 /************************/
