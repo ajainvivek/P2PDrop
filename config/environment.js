@@ -7,7 +7,10 @@ module.exports = function(environment) {
     contentSecurityPolicy: { 'connect-src': "'self' https://auth.firebase.com wss://*.firebaseio.com" },
     firebase: 'https://p2pdrop.firebaseio.com/',
     'simple-auth': {
-      serverTokenRevocationPoint: '/revoke'
+      serverTokenRevocationPoint: '/revoke',
+      authenticationRoute: 'signin',
+      routeAfterAuthentication: 'home',
+      routeIfAlreadyAuthenticated: 'home'
     },
     imgur: {
       clientId: '644aded71822622'

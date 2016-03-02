@@ -3,9 +3,10 @@ import config from '../config/environment';
 const {
   Controller,
   computed
-  } = Ember;
+} = Ember;
 
 export default Controller.extend({
+
   currentUser: computed('session.secure.uid', function(){
     const uid = this.get('session.secure.uid');
     if (uid !== undefined) {

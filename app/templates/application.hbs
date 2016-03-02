@@ -1,5 +1,14 @@
 <div class="container-fluid">
-  {{render 'header-nav'}}
+  {{#if currentUser}}
+    {{render 'header-nav'}}
+  {{else}}
+    <div class="header-banner">
+      <img src="images/logo/p2pdrop-logo-128.png" alt="" height="64" width="64" class="logo"/>
+      <h4>
+        P2PDROP
+      </h4>
+    </div>
+  {{/if}}
 
   <div class="hero-wrapper">
     {{liquid-outlet class="p2pdrop-liquid-wrapper"}}
