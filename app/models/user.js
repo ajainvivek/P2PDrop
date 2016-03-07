@@ -9,5 +9,6 @@ export default Model.extend({
   profilePic: attr(),
   name:   attr('string'),
   online: attr('string'),
-  gender: attr('string')
+  gender: attr('string'),
+  email: attr('string')
 });

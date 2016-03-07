@@ -32,7 +32,7 @@ module.exports = function(environment) {
       'default-src': "'none'",
   	  'style-src': "'self' 'unsafe-inline' 'unsafe-eval'",
       'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
-      'img-src': "'self' https://i.imgur.com/",
+      'img-src': "'self' http://i.imgur.com/",
       'connect-src': "'self' http://fonts.gstatic.com wss://*.firebaseio.com https://*.firebase.com https://sandbox.simplewebrtc.com/socket.io/* wss://tracker.btorrent.xyz/",
       'font-src': "'self' https://fonts.gstatic.com"
     }

@@ -85,7 +85,8 @@ export default Controller.extend(
               id: userData.uid,
               name: this.get('name'),
               profilePic : this.get("profilePic"),
-              sex : this.get("gender")
+              gender : this.get("gender"),
+              email : this.get("email")
             }).save();
             this.authenticateUser(this.get('email'), this.get('password'));
           }
