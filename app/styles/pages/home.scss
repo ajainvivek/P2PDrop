@@ -39,6 +39,7 @@
         background-color: $drop-light-grey;
         color: $drop-dark-grey;
         border-bottom: 3px solid $drop-light-grey;
+        cursor: pointer;
 
         &.active {
           border-bottom: 3px solid $drop-blue;

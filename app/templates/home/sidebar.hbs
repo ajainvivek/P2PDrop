@@ -1,32 +1,64 @@
 <div class="sidebar-nav-container">
   <ul class="sidebar-menu">
-    <li class="v-div active">
+    <li {{action "toggleMenu" "contacts"}} {{bind-attr class=":v-div isContactSelected:active:inactive"}}>
       <img src="images/icons/contacts.png" alt="" height="24" width="24" />
       <span class="title">
         Contacts
       </span>
     </li>
-    <li>
+    <li {{action "toggleMenu" "network"}} {{bind-attr class="isContactSelected:inactive:active"}}>
       <img src="images/icons/network.png" alt="" height="24" width="24" />
       <span class="title">
         Network
       </span>
     </li>
   </ul>
+
   <ul class="sidebar-nav" id="sidebar">
-    <li>
-      <div class="time">
-        Tue
-      </div>
-      <img src="images/dummy/ajain.png" alt="" height="48" width="48" />
-      <span class="name">Ajain Vivek</span>
-    </li>
-    <li class="active">
-      <img src="images/dummy/suganthi.png" alt="" height="48" width="48" />
-      <span class="name">Suganthi Krishnavathi</span>
-      <div class="time">
-        1:41 PM
-      </div>
-    </li>
+    {{#liquid-if isContactSelected class="slide"}}
+      <li>
+        <div class="time">
+          Tue
+        </div>
+        <img src="images/dummy/ajain.png" alt="" height="48" width="48" />
+        <span class="name">Ajain Vivek</span>
+      </li>
+      <li class="active">
+        <img src="images/dummy/suganthi.png" alt="" height="48" width="48" />
+        <span class="name">Suganthi Krishnavathi</span>
+        <div class="time">
+          1:41 PM
+        </div>
+      </li>
+    {{else}}
+      <li>
+        <div class="time">
+          Wed
+        </div>
+        <img src="images/dummy/ajain.png" alt="" height="48" width="48" />
+        <span class="name">Ajain</span>
+      </li>
+      <li class="active">
+        <img src="images/dummy/suganthi.png" alt="" height="48" width="48" />
+        <span class="name">Suganthi Krishnavathi</span>
+        <div class="time">
+          1:41 PM
+        </div>
+      </li>
+      <li>
+        <div class="time">
+          Wed
+        </div>
+        <img src="images/dummy/ajain.png" alt="" height="48" width="48" />
+        <span class="name">Ajain</span>
+      </li>
+      <li class="active">
+        <img src="images/dummy/suganthi.png" alt="" height="48" width="48" />
+        <span class="name">Suganthi Krishnavathi</span>
+        <div class="time">
+          1:41 PM
+        </div>
+      </li>
+    {{/liquid-if}}
   </ul>
 </div>

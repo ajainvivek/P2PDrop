@@ -47,4 +47,11 @@ export default function () {
     this.reverse('toDown', {duration})
   );
 
+  this.transition(
+    this.hasClass('slide'),
+    this.toValue(true),
+    this.use('toLeft', {duration}),
+    this.reverse('toRight', {duration})
+  );
+
 }
