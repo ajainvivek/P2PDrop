@@ -11,7 +11,7 @@ export default Component.extend({
     link : 'https://i.imgur.com/DAgl4rz.png'
   },
   didInsertElement: function () {
-    $("#imgSelector").on("click", function (evt) {
+    $("body").on("click", "#imgSelector", function (evt) {
       evt.stopPropagation();
     });
   },

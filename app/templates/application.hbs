@@ -11,6 +11,10 @@
   {{/if}}
 
   <div class="hero-wrapper">
-    {{liquid-outlet class="p2pdrop-liquid-wrapper"}}
+    {{#if currentUser}}
+      {{liquid-outlet class="p2pdrop-liquid-wrapper"}}
+    {{else}}
+      {{liquid-outlet}}
+    {{/if}}
   </div>
 </div>

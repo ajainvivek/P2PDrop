@@ -94,6 +94,9 @@ export default Controller.extend(
       setProfilePic(data){
         this.set("profilePic", data);
         this.set("uploadedImage", data);
+      },
+      goToLogin() {
+        this.transitionToRoute("signin");
       }
     }
   }
