@@ -10,5 +10,6 @@ export default Model.extend({
   name:   attr('string'),
   online: attr('string'),
   gender: attr('string'),
-  email: attr('string')
+  email: attr('string'),
+  friends: attr()
 });

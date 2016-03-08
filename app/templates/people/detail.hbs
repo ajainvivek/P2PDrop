@@ -40,9 +40,19 @@
         </div>
 
         <div class="form-group">
-          <div class="btn" id="contact-request">
-            Send Connect Request
-          </div>
+          {{#if isConnected}}
+            <div class="btn" id="contact-request">
+              Connected
+            </div>
+          {{else if isPending}}
+            <div class="btn" id="contact-request">
+              Pending Connect Request
+            </div>
+          {{else}}
+            <div class="btn" id="contact-request" {{action "sendConnectRequest"}}>
+              Send Connect Request
+            </div>
+          {{/if}}
         </div>
       </form>
 

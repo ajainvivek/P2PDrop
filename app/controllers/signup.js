@@ -82,14 +82,18 @@ export default Controller.extend(
               //Handle Errors here.
             } else {
               this.store.createRecord('user', {
-              id: userData.uid,
-              name: this.get('name'),
-              profilePic : this.get("profilePic"),
-              gender : this.get("gender"),
-              email : this.get("email")
-            }).save();
-            this.authenticateUser(this.get('email'), this.get('password'));
-          }
+                id: userData.uid,
+                name: this.get('name'),
+                profilePic : this.get("profilePic"),
+                gender : this.get("gender"),
+                email : this.get("email"),
+                friends : {
+                  connected : [],
+                  pending : []
+                }
+              }).save();
+              this.authenticateUser(this.get('email'), this.get('password'));
+            }
         });
       },
       setProfilePic(data){
