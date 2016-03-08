@@ -4,17 +4,17 @@
   </div>
   <div class="left-panel">
       <div class="profile-pic">
-        <img src="images/dummy/ajain.png" alt="" height="128" width="128" data-profile-image="123"/>
-        <h2 class="name">Ajain Vivek</h2>
+        <img src="{{user.profilePic.link}}" alt="" height="128" width="128" data-profile-email="{{user.email}}"/>
+        <h2 class="name">{{user.name}}</h2>
       </div>
   </div>
   <div class="right-panel">
     <div class="profile-content">
       <form class="form-horizontal">
         <div class="form-group">
-          <label class="col-sm-12 control-label align-left">Username</label>
+          <label class="col-sm-12 control-label align-left">Name</label>
           <div class="col-sm-12">
-            <p class="form-control-static">ajainvivek</p>
+            <p class="form-control-static">{{user.name}}</p>
           </div>
         </div>
 
@@ -28,7 +28,7 @@
         <div class="form-group">
           <label class="col-sm-12 control-label align-left">Gender</label>
           <div class="col-sm-12">
-            <p class="form-control-static">Male</p>
+            <p class="form-control-static">{{user.gender}}</p>
           </div>
         </div>
 
@@ -41,10 +41,7 @@
 
         <div class="form-group">
           <div class="btn" id="contact-request">
-            Contact Request
-          </div>
-          <div class="btn" id="send-file">
-            Send File
+            Send Connect Request
           </div>
         </div>
       </form>

@@ -12,7 +12,7 @@
 <div id="peoples" class="tile-wrapper">
   {{#each filteredUsers as |user|}}
   <div class="tile hvr-grow hvr-underline-from-center" {{action 'goToDetail' user}}>
-    <img src={{user.profilePic.link}} alt="" height="128" width="128" data-profile-image="123"/>
+    <img src={{user.profilePic.link}} alt="" height="128" width="128" data-profile-email="{{user.email}}"/>
     <h3 class="name">
       {{user.name}}
     </h3>

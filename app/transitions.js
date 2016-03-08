@@ -33,7 +33,7 @@ export default function () {
     this.fromRoute('people.find'),
     this.toRoute('people.detail'),
     this.useAndReverse('explode', {
-      matchBy: 'data-profile-image',
+      matchBy: 'data-profile-email',
       use: ['fly-to', {duration}]
     },{
       use: "fade"

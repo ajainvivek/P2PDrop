@@ -10,7 +10,7 @@ const {
 
 export default Controller.extend({
   session: inject.service('session'),
-  users : [],
+  users : inject.service('users'),
   filteredUsers : [],
   name : "",
   //Get Users
@@ -24,13 +24,13 @@ export default Controller.extend({
             memo.push(val);
           }
         }, []);
-        self.set("users", users);
+        self.get("users").setUsers(users);
         self.set("filteredUsers", users);
     });
   }.on("init"),
   //Search Query
   searchQuery(chars) {
-    let users = this.get("users");
+    let users = this.get("users").getUsers();
     let filtered = _collection.filter(users, function (user) {
       let name = user.name.toLowerCase();
       if (name.search(chars) >= 0) {
@@ -48,8 +48,8 @@ export default Controller.extend({
     this.set("filteredUsers", users);
   }.observes('name'),
   actions: {
-    goToDetail(data) {
-      this.transitionToRoute("people.detail");
+    goToDetail(user) {
+      this.transitionToRoute("people.detail", { queryParams: { email: user.email }});
     }
   }
 });
