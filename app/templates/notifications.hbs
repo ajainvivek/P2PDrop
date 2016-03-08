@@ -1,0 +1,29 @@
+<div id="notification">
+  {{#if isPendingApprovals}}
+    {{#paper-list}}
+        {{#paper-subheader class="md-no-sticky"}}Pending Approvals{{/paper-subheader}}
+
+        {{#each pendingApprovals as |pendingApproval|}}
+          {{#paper-item}}
+            {{paper-icon "thumbs-up-down"}}
+            <p>{{pendingApproval.name}}</p>
+            <div onclick={{action "approve" pendingApproval}}>
+              {{#paper-button raised=true primary=true }}Approve{{/paper-button}}
+            </div>
+            <div onclick={{action "reject" pendingApproval}}>
+              {{#paper-button raised=true warn=true}}Reject{{/paper-button}}
+            </div>
+          {{/paper-item}}
+        {{/each}}
+
+    {{/paper-list}}
+  {{else}}
+    {{#paper-list}}
+      {{#paper-subheader class="md-no-sticky"}}Pending Approvals{{/paper-subheader}}
+          {{#paper-item}}
+            <p>None</p>
+          {{/paper-item}}
+      {{/paper-list}}
+  {{/if}}
+
+</div>

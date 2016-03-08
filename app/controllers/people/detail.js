@@ -19,7 +19,6 @@ export default Controller.extend({
     this.transitionToRoute("people.find");
   },
   checkStatus : function () {
-    const uid = this.get('session.secure.uid');
     let userRef = new Firebase(config.firebase + '/users');
     let email = this.get("user").email;
     let self = this;
@@ -41,9 +40,9 @@ export default Controller.extend({
         self.set("pending", pending);
         self.set("uid", key);
 
-        if (_array.indexOf(connected, email) >= 0) {
+        if (_array.findIndex(connected, {email : email}) >= 0) {
           self.set("isConnected", true);
-        } else if (_array.indexOf(pending, email) >= 0) {
+        } else if (_array.findIndex(pending, {email : email}) >= 0) {
           self.set("isPending", true);
         } else {
           self.set("isAvailable", true);
@@ -58,9 +57,14 @@ export default Controller.extend({
       let self = this;
       let userRef = new Firebase(config.firebase + '/users/' + uid);
       let email = this.get("user").email;
+      let name = this.get("user").name;
+      let user = {
+        email : email,
+        name : name
+      };
       let pending = this.get("pending");
       let connected = this.get("connected");
-      pending.push(email);
+      pending.push(user);
 
       //on complete state change the state of btn
       let onComplete = function () {
