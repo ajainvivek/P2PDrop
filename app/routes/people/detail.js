@@ -12,6 +12,9 @@ export default Route.extend(AuthenticatedRouteMixin, {
     let user = this.get("users").getUser(queryParams.queryParams.email);
     if (user) {
       controller.set("user", user);
+      controller.set("isAvailable", false);
+      controller.set("isPending", false);
+      controller.set("isConnected", false);
       controller.checkStatus();
     } else {
       controller.traverseBack();

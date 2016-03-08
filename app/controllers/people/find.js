@@ -16,16 +16,21 @@ export default Controller.extend({
   //Get Users
   fetchUsers : function () {
     let self = this;
-    new Firebase(config.firebase + "users").orderByChild('name')
-    .once('value', function(snap){
-        let usersList = snap.val();
-        let users = _object.transform(usersList, function(memo, val, key) {
-          if (val.name) {
-            memo.push(val);
-          }
-        }, []);
-        self.get("users").setUsers(users);
-        self.set("filteredUsers", users);
+    const uid = this.get('session.secure.uid');
+
+    this.get("users").getCurrentUser(uid).then(function (user) {
+      let email = user.email;
+      new Firebase(config.firebase + "users").orderByChild('name')
+      .once('value', function(snap){
+          let usersList = snap.val();
+          let users = _object.transform(usersList, function(memo, val, key) {
+            if (val.name && val.email !== email) {
+              memo.push(val);
+            }
+          }, []);
+          self.get("users").setUsers(users);
+          self.set("filteredUsers", users);
+      });
     });
   }.on("init"),
   //Search Query

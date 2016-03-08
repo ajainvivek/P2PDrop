@@ -1,6 +1,7 @@
 import Ember from "ember";
 import _object from 'lodash/object';
 import _collection from 'lodash/collection';
+import config from '../config/environment';
 
 const {
   Service,
@@ -21,5 +22,16 @@ export default Service.extend({
       email : email
     })[0];
     return user;
-  }
+  },
+  getCurrentUser : function (uid) {
+    let userRef = new Firebase(config.firebase + '/users/' + uid);
+    let self = this;
+
+    return new Promise(function (resolve, reject) {
+      userRef.on("value", function(snapshot) {
+        let user = snapshot.val();
+        resolve(user);
+      });
+    });
+  },
 });
