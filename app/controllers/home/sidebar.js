@@ -48,7 +48,7 @@ export default Controller.extend({
       }
 
       this.set("webrtcInstance", instance);
-      webrtc.joinRoom(user.uid, webrtc);
+      webrtc.joinRoom(user.uid, instance);
       this.set("selectedList", selectedList);
     }
   }

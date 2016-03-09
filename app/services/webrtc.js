@@ -19,6 +19,9 @@ export default Ember.Service.extend({
                 OfferToReceiveVideo: false
             }
         },
+        socketio: {
+          'force new connection':true
+        },
         url: "https://p2pdrop-signalling.herokuapp.com/"
     }));
   },
@@ -38,13 +41,16 @@ export default Ember.Service.extend({
                 OfferToReceiveVideo: false
             }
         },
+        socketio: {
+          'force new connection':true
+        },
         url: "https://p2pdrop-signalling.herokuapp.com/"
     });
   },
 
   //On message received
-  onMessageReceived : function (callback) {
-    var webrtc = this.get("webrtc");
+  onMessageReceived : function (callback, webrtc) {
+    var webrtc = webrtc || this.get("webrtc");
     webrtc.connection.on('message', function(data){
       if(data.type === 'chat'){
         console.log('chat received',data);
@@ -62,7 +68,9 @@ export default Ember.Service.extend({
   //Join Room
   joinRoom: function (room, webrtc) {
     var webrtc = webrtc || this.get("webrtc");
-    webrtc.joinRoom(room);
+    webrtc.on('connectionReady', function () {
+      webrtc.joinRoom(room);
+    });
   },
 
   //Create Peer
