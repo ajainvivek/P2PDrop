@@ -16,20 +16,22 @@
 
   <ul class="sidebar-nav" id="sidebar">
     {{#liquid-if isContactSelected class="slide"}}
-      <li>
-        <div class="time">
-          Tue
-        </div>
-        <img src="images/dummy/ajain.png" alt="" height="48" width="48" />
-        <span class="name">Ajain Vivek</span>
-      </li>
-      <li class="active">
+      {{#each connectedUsers as |connectedUser|}}
+        <li>
+          <div class="time">
+            Tue
+          </div>
+          <img src="{{connectedUser.profilePic.link}}" alt="" height="48" width="48" class="profile-image"/>
+          <span class="name">{{connectedUser.name}}</span>
+        </li>
+      {{/each}}
+      <!-- <li class="active">
         <img src="images/dummy/suganthi.png" alt="" height="48" width="48" />
         <span class="name">Suganthi Krishnavathi</span>
         <div class="time">
           1:41 PM
         </div>
-      </li>
+      </li> -->
     {{else}}
       <li>
         <div class="time">

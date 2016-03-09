@@ -73,6 +73,8 @@
           -ms-transition: background .5s;
           transition: background .5s;
           color: $drop-dark-grey;
+          border-bottom: 1px solid rgba(169, 169, 169, 0.2);
+          cursor: pointer;
 
           &.active {
             background-color: $drop-grey;
@@ -80,6 +82,14 @@
 
           .name {
             padding-left: 10px;
+          }
+
+          .profile-image {
+            height: 48px;
+            width: 48px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-image: url('images/placeholder_profile.png');
           }
 
           .time {
