@@ -30,7 +30,10 @@ export default Controller.extend({
       let currentUserEmail = user.email;
       self.set("currentUser", {
         email : user.email,
-        name : user.name
+        name : user.name,
+        profilePic : {
+          link : user.profilePic.link
+        }
       });
       // Attach an asynchronous callback to read the data at our posts reference
       userRef.orderByChild('email')
@@ -68,9 +71,13 @@ export default Controller.extend({
       let userRef = new Firebase(config.firebase + '/users/' + uid);
       let email = this.get("currentUser").email;
       let name = this.get("currentUser").name;
+      let link = this.get("currentUser").profilePic.link;
       let user = {
         email : email,
-        name : name
+        name : name,
+        profilePic : {
+          link : link
+        }
       };
       let pending = this.get("pending");
       let connected = this.get("connected");

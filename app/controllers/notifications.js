@@ -88,7 +88,10 @@ export default Controller.extend({
           if (state === "approve") {
             self.updateFriendRef(user.email, {
               email : currentUser.email,
-              name : currentUser.name
+              name : currentUser.name,
+              profilePic : {
+                link : currentUser.profilePic.link
+              }
             });
           }
         }
