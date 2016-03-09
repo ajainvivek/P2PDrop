@@ -23,6 +23,25 @@ export default Ember.Service.extend({
     }));
   },
 
+  //Get WebRTC Instance
+  getInstance : function () {
+    return new SimpleWebRTC({
+        // we don't do video
+        localVideoEl: '',
+        remoteVideosEl: '',
+        // dont ask for camera access
+        autoRequestMedia: false,
+        // dont negotiate media
+        receiveMedia: {
+            mandatory: {
+                OfferToReceiveAudio: false,
+                OfferToReceiveVideo: false
+            }
+        },
+        url: "https://p2pdrop-signalling.herokuapp.com/"
+    });
+  },
+
   //On message received
   onMessageReceived : function (callback) {
     var webrtc = this.get("webrtc");
@@ -35,21 +54,21 @@ export default Ember.Service.extend({
   },
 
   //Send chat message
-  sendChatMessage : function (msg) {
-    var webrtc = this.get("webrtc");
+  sendChatMessage : function (msg, webrtc) {
+    var webrtc = webrtc || this.get("webrtc");
     webrtc.sendToAll('chat', {message: msg, nick: webrtc.config.nick});
   },
 
   //Join Room
-  joinRoom: function (room) {
-    var webrtc = this.get("webrtc");
+  joinRoom: function (room, webrtc) {
+    var webrtc = webrtc || this.get("webrtc");
     webrtc.joinRoom(room);
   },
 
   //Create Peer
-  createPeer: function (callback) {
+  createPeer: function (callback, webrtc) {
     var self = this;
-    var webrtc = this.get("webrtc");
+    var webrtc = webrtc || this.get("webrtc");
     // Called when a peer is created
     webrtc.on('createdPeer', function (peer) {
         self.set("peer", peer);

@@ -17,7 +17,7 @@
   <ul class="sidebar-nav" id="sidebar">
     {{#liquid-if isContactSelected class="slide"}}
       {{#each connectedUsers as |connectedUser|}}
-        <li>
+        <li {{action "selectUser" connectedUser}}>
           <div class="time">
             Tue
           </div>
@@ -25,13 +25,6 @@
           <span class="name">{{connectedUser.name}}</span>
         </li>
       {{/each}}
-      <!-- <li class="active">
-        <img src="images/dummy/suganthi.png" alt="" height="48" width="48" />
-        <span class="name">Suganthi Krishnavathi</span>
-        <div class="time">
-          1:41 PM
-        </div>
-      </li> -->
     {{else}}
       <li>
         <div class="time">

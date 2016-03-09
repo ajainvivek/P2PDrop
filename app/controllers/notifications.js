@@ -91,7 +91,8 @@ export default Controller.extend({
               name : currentUser.name,
               profilePic : {
                 link : currentUser.profilePic.link
-              }
+              },
+              uid : uid
             });
           }
         }

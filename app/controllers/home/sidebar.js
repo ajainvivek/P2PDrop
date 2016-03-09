@@ -10,8 +10,11 @@ const {
 
 export default Controller.extend({
   users : inject.service("users"),
+  webrtc : inject.service("webrtc"),
+  webrtcInstance : null,
   isContactSelected : true,
   connectedUsers : [],
+  selectedList : null,
   init : function () {
     const uid = this.get('session.secure.uid');
     let self = this;
@@ -25,6 +28,28 @@ export default Controller.extend({
     toggleMenu(title) {
       let isContactSelected = (title === "contacts") ? true : false;
       this.set("isContactSelected", isContactSelected);
+    },
+    selectUser(user) {
+      let webrtc = this.get("webrtc");
+      let instance = webrtc.getInstance();
+      let selectedList = $(event.target).closest("li");
+
+      //if same list item is clicked again then ignore
+      if (selectedList.hasClass("active")) {
+        return;
+      }
+
+      //Switch Highlight of List
+      if (this.get("selectedList")) {
+        this.get("selectedList").removeClass("active");
+        selectedList.addClass("active");
+      } else {
+        selectedList.addClass("active");
+      }
+
+      this.set("webrtcInstance", instance);
+      webrtc.joinRoom(user.uid, webrtc);
+      this.set("selectedList", selectedList);
     }
   }
 });

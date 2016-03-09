@@ -33,7 +33,8 @@ export default Controller.extend({
         name : user.name,
         profilePic : {
           link : user.profilePic.link
-        }
+        },
+        uid : uid
       });
       // Attach an asynchronous callback to read the data at our posts reference
       userRef.orderByChild('email')
@@ -72,12 +73,14 @@ export default Controller.extend({
       let email = this.get("currentUser").email;
       let name = this.get("currentUser").name;
       let link = this.get("currentUser").profilePic.link;
+      let cuid = this.get("currentUser").uid;
       let user = {
         email : email,
         name : name,
         profilePic : {
           link : link
-        }
+        },
+        uid : cuid
       };
       let pending = this.get("pending");
       let connected = this.get("connected");
