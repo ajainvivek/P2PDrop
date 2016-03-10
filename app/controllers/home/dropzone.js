@@ -1,4 +1,5 @@
 import Ember from "ember";
+import config from '../../config/environment';
 
 const {
   Controller,
@@ -11,6 +12,7 @@ export default Controller.extend({
   webtorrent : inject.service(),
   webrtc : inject.service(),
   users : inject.service("users"),
+  blob: inject.service("blob"),
   init : function () {
     let webrtc = this.get("webrtc");
     let webtorrent = this.get("webtorrent");
@@ -42,7 +44,21 @@ export default Controller.extend({
       let webtorrent = this.get("webtorrent");
       let webrtc = this.get("webrtc");
       let instance = this.get("sidebar").webrtcInstance;
-      webtorrent.seed(data[0].file).then(function (hash) {
+      let fileObj;
+
+      if (config.locationType === "hash") { //Hack To Seed File Object for WebTorrent
+        let base64 = data[0].result.split(',')[1];
+        let blob = this.get("blob");
+        fileObj = blob.b64toBlob(base64, data[0].file.type);
+        fileObj.name = data[0].file.name;
+        fileObj.lastModified = data[0].file.lastModified;
+        fileObj.lastModifiedDate = data[0].file.lastModifiedDate;
+        fileObj.webkitRelativePath = data[0].file.webkitRelativePath;
+      } else {
+        fileObj = data[0].file;
+      }
+
+      webtorrent.seed(fileObj).then(function (hash) {
         webrtc.sendChatMessage(hash, instance);
       }, function () {
         Logger.debug("error state");
