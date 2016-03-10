@@ -47,6 +47,7 @@
     "ember-imgur": "0.1.0",
     "ember-lodash": "0.0.6",
     "ember-moment": "4.1.0",
+    "ember-notify": "5.0.2",
     "ember-paper": "0.2.11",
     "ember-watson": "0.7.0",
     "emberfire": "1.6.4",

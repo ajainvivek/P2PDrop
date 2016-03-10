@@ -9,6 +9,7 @@ const {
 
 export default Controller.extend(
   LoginUser, {
+    notify: inject.service('notify'),
     randomProfilePics : {
       male : [{
         link : 'https://i.imgur.com/70XDfct.png'
@@ -79,7 +80,7 @@ export default Controller.extend(
         const firebase = new Firebase(config.firebase);
         firebase.createUser(this.userValues(), (error, userData) => {
             if (error) {
-              //Handle Errors here.
+              this.get('notify').alert(error.toString());
             } else {
               this.store.createRecord('user', {
                 id: userData.uid,
