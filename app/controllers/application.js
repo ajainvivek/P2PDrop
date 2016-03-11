@@ -6,6 +6,11 @@ const {
 } = Ember;
 
 export default Controller.extend({
+  init : function () {
+    if (this.get("currentUser")) {
+      this.transitionToRoute("home");
+    }
+  },
 
   currentUser: computed('session.secure.uid', function(){
     const uid = this.get('session.secure.uid');
