@@ -14,7 +14,9 @@ export default Component.extend({
   actions : {
     //Trigger File Select
     triggerFileSelect: function () {
-      $("#p2p-files").trigger("click");
+      this.sendAction("triggerFileSelect", function () {
+        $("#p2p-files").trigger("click");
+      });
     },
     //Handle File Select Event
     onFileSelect : function () {

@@ -8,6 +8,6 @@
         <img src="images/logo/p2pdrop-logo-white-256.png" alt="" height="256" width="256" />
       </div>
     </div>
-    {{file-select-drop class="dropzone-widget" onFileSelect=(action "sendFile")}}
+    {{file-select-drop class="dropzone-widget" onFileSelect=(action "sendFile") triggerFileSelect=(action "triggerFileSelect")}}
     {{action-bar class="action-bar-wrapper" actionContext=actionContext}}
 </div>

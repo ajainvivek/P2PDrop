@@ -17,6 +17,15 @@ export default Controller.extend({
   selectedList : null,
   init : function () {
     const uid = this.get('session.secure.uid');
+    let userRef = new Firebase(config.firebase + '/users/' + uid);
+    let self = this
+    userRef.on("value", function(snapshot) {
+      self.updateUsers();
+    });
+    this.updateUsers();
+  },
+  updateUsers : function () {
+    const uid = this.get('session.secure.uid');
     let self = this;
     this.get("users").getCurrentUser(uid).then(function (currentUser) {
       let friends = currentUser.friends || {};

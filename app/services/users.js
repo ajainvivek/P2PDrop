@@ -28,7 +28,7 @@ export default Service.extend({
     let self = this;
 
     return new Promise(function (resolve, reject) {
-      userRef.on("value", function(snapshot) {
+      userRef.once("value", function(snapshot) {
         let user = snapshot.val();
         resolve(user);
       });

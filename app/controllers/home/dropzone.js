@@ -12,7 +12,8 @@ export default Controller.extend({
   webtorrent : inject.service(),
   webrtc : inject.service(),
   users : inject.service("users"),
-  blob: inject.service("blob"),
+  blob : inject.service("blob"),
+  notify : inject.service("notify"),
   init : function () {
     let webrtc = this.get("webrtc");
     let webtorrent = this.get("webtorrent");
@@ -40,6 +41,15 @@ export default Controller.extend({
     });
   },
   actions : {
+    triggerFileSelect : function (callback) {
+      let selectedList = this.get("sidebar").selectedList;
+      let notify = this.get("notify");
+      if (selectedList !== null) {
+        callback();
+      } else {
+        notify.info("Select user to share file.");
+      }
+    },
     sendFile : function (data) {
       let webtorrent = this.get("webtorrent");
       let webrtc = this.get("webrtc");
