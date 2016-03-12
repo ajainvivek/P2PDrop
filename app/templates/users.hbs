@@ -1,1 +1,19 @@
-{{outlet}}
+<div class="md-padding">
+  <h2 class="userdisplay-title">Online Users</h2>
+  <div class="userdisplay-wrapper">
+    {{#each onlineUsers as |user|}}
+      {{user-display user=user}}
+    {{else}}
+      There's no users online right now.
+    {{/each}}
+  </div>
+
+  <h2 class="userdisplay-title">Offline Users</h2>
+  <div class="userdisplay-wrapper">
+    {{#each offlineUsers as |user|}}
+      {{user-display user=user}}
+    {{else}}
+      There's no users offline right now.
+    {{/each}}
+  </div>
+</div>

@@ -93,11 +93,15 @@
           }
 
           .time {
-            float: right;
             color: $drop-dark-grey;
             font-size: 12px;
             margin-top: -18px;
             margin-right: 7px;
+            position: absolute;
+            right: 0px;
+            .online {
+              color: $drop-green;
+            }
           }
         }
       }

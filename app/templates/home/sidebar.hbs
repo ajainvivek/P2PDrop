@@ -19,7 +19,11 @@
       {{#each connectedUsers as |connectedUser|}}
         <li {{action "selectUser" connectedUser}}>
           <div class="time">
-            Tue
+            {{#if connectedUser.isOnline}}
+              <span class="online">online</span>
+            {{else}}
+              {{moment-format connectedUser.online allow-empty=true}}
+            {{/if}}
           </div>
           <img src="{{connectedUser.profilePic.link}}" alt="" height="48" width="48" class="profile-image"/>
           <span class="name">{{connectedUser.name}}</span>

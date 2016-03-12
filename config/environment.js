@@ -15,6 +15,9 @@ module.exports = function(environment) {
     imgur: {
       clientId: '644aded71822622'
     },
+    moment: {
+      outputFormat: 'll'
+    },
     baseURL: '/',
     locationType: process.env.EMBER_CLI_ELECTRON ? 'hash' : 'auto',
     EmberENV: {

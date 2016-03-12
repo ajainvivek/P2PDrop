@@ -11,6 +11,7 @@ const {
 export default Controller.extend({
   users : inject.service("users"),
   webrtc : inject.service("webrtc"),
+  notify : inject.service("notify"),
   webrtcInstance : null,
   isContactSelected : true,
   connectedUsers : [],
@@ -27,10 +28,24 @@ export default Controller.extend({
   updateUsers : function () {
     const uid = this.get('session.secure.uid');
     let self = this;
+    let usersRef = new Firebase(config.firebase + '/users/');
     this.get("users").getCurrentUser(uid).then(function (currentUser) {
       let friends = currentUser.friends || {};
       let connected = friends.connected || [];
-      self.set("connectedUsers", connected);
+      usersRef.orderByChild('online').startAt(true).on('value',  function (snap) { //Append online status & network ip
+        let users = snap.val();
+        _collection.each(connected, function (user) {
+          if (users[user.uid].online === true) {
+            user.isOnline = true;
+          } else {
+            user.isOnline = false;
+          }
+          user.online = users[user.uid].online;
+          user.network = users[user.uid].network;
+        });
+        self.set("connectedUsers", connected);
+      });
+
     });
   },
   actions : {
@@ -42,9 +57,16 @@ export default Controller.extend({
       let webrtc = this.get("webrtc");
       let instance = webrtc.getInstance();
       let selectedList = $(event.target).closest("li");
+      let notify = this.get("notify");
 
       //if same list item is clicked again then ignore
       if (selectedList.hasClass("active")) {
+        return;
+      }
+
+      //Check if user is online then select the user
+      if (!user.isOnline) {
+        notify.info("User is offline. You can share file once user is online.");
         return;
       }
 
