@@ -10,29 +10,9 @@ export default Controller.extend({
   ips : inject.service("ips"),
   users : inject.service("users"),
   init : function () {
-    const uid = this.get('session.secure.uid');
-    let self = this;
     if (this.get("currentUser")) {
       this.transitionToRoute("home");
     }
-
-    //on complete state change the state of btn
-    let onComplete = function (error) {
-      if (error) {
-        console.log('Synchronization failed');
-      } else {
-        console.log('Synchronized');
-      }
-    }
-
-    this.get("ips").getLocalIps().then(function (data) {
-      let userRef = new Firebase(config.firebase + '/users/' + uid + "/networks");
-
-      self.get("users").getCurrentUser(uid).then(function (currentUser) {
-        userRef.set(data[1], onComplete);
-      });
-
-    });
   },
 
   currentUser: computed('session.secure.uid', function(){
