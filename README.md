@@ -2,7 +2,7 @@
   <br>
   <img src="http://i.imgur.com/OiyFJKz.png" alt="P2PDrop" width="200">
   <br>
-  WebTorrent
+  P2PDrop
   <br>
   <br>
 </h1>
