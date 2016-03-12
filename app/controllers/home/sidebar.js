@@ -16,6 +16,7 @@ export default Controller.extend({
   isContactSelected : true,
   connectedUsers : [],
   selectedList : null,
+  networkUsers : [],
   init : function () {
     const uid = this.get('session.secure.uid');
     let userRef = new Firebase(config.firebase + '/users/' + uid);
@@ -34,7 +35,11 @@ export default Controller.extend({
       let connected = friends.connected || [];
       usersRef.orderByChild('online').startAt(true).on('value',  function (snap) { //Append online status & network ip
         let users = snap.val();
+        let networkUsers = [];
         _collection.each(connected, function (user) {
+          if (users[user.uid].networks && users[user.uid].networks === currentUser.networks) { //Push to network users if both are in same network
+            networkUsers.push(user);
+          }
           if (users[user.uid].online === true) {
             user.isOnline = true;
           } else {
@@ -44,6 +49,7 @@ export default Controller.extend({
           user.network = users[user.uid].network;
         });
         self.set("connectedUsers", connected);
+        self.set("networkUsers", networkUsers);
       });
 
     });
