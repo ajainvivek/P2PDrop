@@ -2,6 +2,7 @@ import Ember from "ember";
 import config from '../../config/environment';
 import _object from 'lodash/object';
 import _collection from 'lodash/collection';
+import _array from 'lodash/array';
 
 const {
   Controller,
@@ -29,7 +30,7 @@ export default Controller.extend({
             }
           }, []);
           self.get("users").setUsers(users);
-          self.set("filteredUsers", users);
+          self.set("filteredUsers", _array.take(users, 10));
       });
     });
   }.on("init"),
