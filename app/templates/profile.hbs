@@ -1,0 +1,32 @@
+<div class="row" id="profile">
+  <div class="center">
+    {{profile-pic profilePic=profilePic imageUploaded=(action 'setProfilePic')}}
+  </div>
+  <div class="form-wrapper">
+    {{#paper-list}}
+      {{#paper-item class="col-xs-12 col-md-12"}}
+        <div class="fill-width">
+          {{paper-input label="Name (required)" value=currentUser.name icon="person" icon-class="name" required=true}}
+        </div>
+      {{/paper-item}}
+      {{#paper-item class="col-xs-12 col-md-12"}}
+        <div class="fill-width">
+          {{paper-input label="Email (required)" type="email" value=currentUser.email icon="email" icon-class="email" required=true customValidation=emailValidation disabled="disabled"}}
+        </div>
+      {{/paper-item}}
+      {{#paper-item class="col-xs-12 col-md-12"}}
+      <div class="fill-width misc">
+        <div class="right">
+          {{paper-icon "face"}}
+        </div>
+        <div class="left">
+          {{#paper-switch checked=isMale}} {{currentUser.gender}} {{/paper-switch}}
+        </div>
+      </div>
+      {{/paper-item}}
+    {{/paper-list}}
+  </div>
+  <div class="center col-xs-12 col-md-12">
+    {{#paper-button raised=true action="update"}}Update{{/paper-button}}
+  </div>
+</div>

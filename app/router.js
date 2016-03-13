@@ -16,6 +16,7 @@ Router.map(function() {
   this.route('signup');
   this.route('signin', {path : "/"});
   this.route('notifications');
+  this.route('profile');
 });
 
 export default Router;
