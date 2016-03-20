@@ -36,7 +36,7 @@ module.exports = function(environment) {
   	  'style-src': "'self' 'unsafe-inline' 'unsafe-eval'",
       'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
       'img-src': "'self' http://i.imgur.com/",
-      'connect-src': "'self' http://fonts.gstatic.com wss://*.firebaseio.com https://*.firebase.com https://sandbox.simplewebrtc.com/socket.io/* wss://tracker.btorrent.xyz/",
+      'connect-src': "'self' http://fonts.gstatic.com wss://*.firebaseio.com https://*.firebase.com https://sandbox.simplewebrtc.com/socket.io/* wss://tracker.btorrent.xyz/ https://p2pdrop-signalling.herokuapp.com wss://p2pdrop-signalling.herokuapp.com",
       'font-src': "'self' https://fonts.gstatic.com"
     }
   };
