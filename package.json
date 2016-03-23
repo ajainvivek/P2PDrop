@@ -38,6 +38,7 @@
     "ember-cli-sass": "5.3.0",
     "ember-cli-simple-auth": "0.8.0",
     "ember-cli-simple-auth-firebase": "1.0.5",
+    "ember-cli-spinner": "0.0.7",
     "ember-cli-sri": "^1.0.3",
     "ember-cli-uglify": "^1.2.0",
     "ember-data": "1.13.8",

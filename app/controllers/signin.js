@@ -1,11 +1,13 @@
 import Ember from 'ember';
 import LoginUser from '../mixins/signin-user';
 const {
-  Controller
-  } = Ember;
+  Controller,
+  inject
+} = Ember;
 
 export default Controller.extend(
   LoginUser, {
+    spinner: inject.service("spinner"),
     emailValidation: {
       'errorMessage': 'Please provide email in a valid format',
       'isError': (inputValue) => {
@@ -15,6 +17,7 @@ export default Controller.extend(
     },
     actions: {
       signin() {
+        this.get('spinner').show('app-spinner');
         this.authenticateUser(this.get('email'), this.get('password'));
       },
       goToSignUp() {

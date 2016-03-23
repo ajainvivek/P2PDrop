@@ -10,6 +10,7 @@ const {
 export default Controller.extend(
   LoginUser, {
     notify: inject.service('notify'),
+    spinner: inject.service('spinner'),
     randomProfilePics : {
       male : [{
         link : 'https://i.imgur.com/70XDfct.png'
@@ -78,8 +79,10 @@ export default Controller.extend(
       signup(){
         if (this.get('name') === undefined) { return; }
         const firebase = new Firebase(config.firebase);
+        this.get('spinner').show('app-spinner');
         firebase.createUser(this.userValues(), (error, userData) => {
             if (error) {
+              this.get('spinner').hide('app-spinner');
               this.get('notify').alert(error.toString());
             } else {
               this.store.createRecord('user', {
