@@ -94,7 +94,8 @@ export default Controller.extend(
                 friends : {
                   connected : [],
                   pending : []
-                }
+                },
+                networks : {}
               }).save();
               this.authenticateUser(this.get('email'), this.get('password'));
             }

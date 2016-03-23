@@ -34,9 +34,9 @@ module.exports = function(environment) {
     contentSecurityPolicy : {
       'default-src': "'none'",
   	  'style-src': "'self' 'unsafe-inline' 'unsafe-eval'",
-      'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
+      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' https://s-usc1c-nss-140.firebaseio.com/",
       'img-src': "'self' http://i.imgur.com/",
-      'connect-src': "'self' http://fonts.gstatic.com wss://*.firebaseio.com https://*.firebase.com https://sandbox.simplewebrtc.com/socket.io/* wss://tracker.btorrent.xyz/ https://p2pdrop-signalling.herokuapp.com wss://p2pdrop-signalling.herokuapp.com",
+      'connect-src': "'self' http://fonts.gstatic.com wss://*.firebaseio.com https://*.firebase.com https://sandbox.simplewebrtc.com/socket.io/* wss://tracker.btorrent.xyz/ https://p2pdrop-signalling.herokuapp.com wss://p2pdrop-signalling.herokuapp.com https://s-usc1c-nss-140.firebaseio.com/",
       'font-src': "'self' https://fonts.gstatic.com"
     }
   };
