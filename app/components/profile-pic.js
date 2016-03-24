@@ -7,6 +7,7 @@ const {
 export default Component.extend({
   imgur: inject.service(),
   file: inject.service(),
+  spinner: inject.service('spinner'),
   profilePic : {
     link : 'https://i.imgur.com/DAgl4rz.png'
   },
@@ -24,8 +25,10 @@ export default Component.extend({
     uploadImage(){
       event.stopPropagation();
       let self = this;
+      this.get('spinner').show('app-spinner');
       this.get("file").read(event).then(function (imageData) {
         self.get('imgur').imagePost(imageData[0].result.split(',')[1]).then((result) => {
+          self.get('spinner').hide('app-spinner');
           self.sendAction("imageUploaded", result.data);
         }).catch((result) => {
           console.error(result);
