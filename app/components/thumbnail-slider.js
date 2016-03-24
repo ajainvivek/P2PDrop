@@ -1,26 +1,64 @@
 import Ember from 'ember';
 import _ from 'lodash';
 
-export default Ember.Component.extend({
+const {
+  Component,
+  run,
+  inject
+} = Ember;
+
+export default Component.extend({
   files: [],
   currentGUID: null,
+  notify: inject.service("notify"),
   didInsertElement : function () {
     this.set("thumbnailContext", this);
     this.highlightSelected();
   },
 
+  //Update the download/upload information
+  updateSpeed : function (torrent, client) {
+    var progress = (100 * torrent.progress).toFixed(1);
+    return {
+      peers : torrent.swarm.wires.length,
+      progress : progress
+    };
+  },
+
   //once file metadata is received render the card
-  renderCard : function (metadata) {
+  renderCard : function (torrent, name) {
     let files = this.get("files");
     let guid = this.guid();
+    let self = this;
     this.set("currentGUID", guid);
     let file = Ember.Object.create({
-      name: metadata.name,
+      name: torrent.name,
       guid: guid,
       url: "",
-      selected: false
+      selected: false,
+      isDownloading: true,
+      progress: 0
     });
     files.pushObject(file);
+
+    let message = self.get("notify").info(name +' sent you a file ' + torrent.name);
+
+    torrent.on('download', function (chunkSize) {
+      let changedFile = files.findProperty("guid", guid);
+      let updateSpeed = function () {
+        let update = self.updateSpeed(torrent);
+        changedFile.set("progress", update.progress);
+        if (parseInt(update.progress) === 100) {
+          run.later(self, function () {
+            message.set('visible', false);
+          }, 3000);
+          changedFile.set("isDownloading", false);
+          run.cancel(throttle);
+        }
+      };
+      let throttle = run.throttle(self, updateSpeed, 10);
+    });
+
     this.set("files", files);
   },
 

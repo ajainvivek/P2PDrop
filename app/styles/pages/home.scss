@@ -114,11 +114,22 @@
           .thumbnail-slider-wrapper {
             height: 100px !important;
             .thumbnail-slider {
+              .progress-indicator {
+                height: 80px;
+                width: 80px;
+                md-progress-circular {
+                  margin-top: -10px;
+                  margin-left: -10px;
+                }
+              }
+
               .card {
                 height: 80px !important;
                 width: 80px !important;
-                padding: 5px !important;
                 margin: 8px !important;
+                .content-wrapper {
+                  padding: 8px !important;
+                }
                 img {
                   height: 32px !important;
                   width: 32px !important;
@@ -158,13 +169,26 @@
               width: 120px;
               background: $drop-white;
               margin: 10px;
-              padding: 10px;
               border-radius: 5px;
               -webkit-box-shadow: -1px 0px 0px 0px rgba(50, 50, 50, 0.2);
               -moz-box-shadow: -1px 0px 0px 0px rgba(50, 50, 50, 0.2);
               box-shadow: -1px 0px 0px 0px rgba(50, 50, 50, 0.2);
               display: inline-block;
               cursor: pointer;
+
+              .content-wrapper {
+                padding: 10px;
+              }
+
+              .progress-indicator {
+                position: absolute;
+                background: rgba(152, 158, 146, 0.2);
+                height: 120px;
+                width: 120px;
+                md-progress-circular {
+                  margin: 8px auto;
+                }
+              }
 
               img {
                 margin: 10px auto;

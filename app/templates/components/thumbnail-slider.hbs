@@ -1,8 +1,15 @@
 <div class="thumbnail-slider">
   {{#each files as |file|}}
     <div {{action "triggerActionBar" file}} class="card {{if file.selected 'selected' ''}}">
-      <img src="images/icons/{{extension-mapping file.name}}.png" alt=""/>
-      <h3>{{file.name}}</h3>
+      {{#if file.isDownloading}}
+        <div class="progress-indicator">
+          {{paper-progress-circular value=file.progress}}
+        </div>
+      {{/if}}
+      <div class="content-wrapper">
+        <img src="images/icons/{{extension-mapping file.name}}.png" alt=""/>
+        <h3>{{file.name}}</h3>
+      </div>
     </div>
   {{/each}}
 </div>

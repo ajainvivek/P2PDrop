@@ -24,9 +24,9 @@ export default Controller.extend({
     this.get("webrtc").initialize();
 
     //Render thumbnail card
-    let renderCard = function (torrent) {
+    let renderCard = function (torrent, name) {
       let thumbnailContext = self.get("thumbnailContext");
-      thumbnailContext.renderCard.call(thumbnailContext, torrent);
+      thumbnailContext.renderCard.call(thumbnailContext, torrent, name);
     };
 
     //Default Join Self Room To Receive Incoming Files
@@ -55,6 +55,8 @@ export default Controller.extend({
       let webrtc = this.get("webrtc");
       let instance = this.get("sidebar").webrtcInstance;
       let fileObj;
+      let users = this.get("users");
+      const uid = this.get('session.secure.uid');
 
       if (config.locationType === "hash") { //Hack To Seed File Object for WebTorrent
         let base64 = data[0].result.split(',')[1];
@@ -69,7 +71,15 @@ export default Controller.extend({
       }
 
       webtorrent.seed(fileObj).then(function (hash) {
-        webrtc.sendChatMessage(hash, instance);
+
+        users.getCurrentUser(uid).then(function (user) {
+          let obj = {
+            hash : hash,
+            name : user.name
+          };
+          webrtc.sendChatMessage(obj, instance);
+        });
+
       }, function () {
         Logger.debug("error state");
       });
