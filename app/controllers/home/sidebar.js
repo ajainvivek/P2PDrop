@@ -37,7 +37,7 @@ export default Controller.extend({
         let users = snap.val();
         let networkUsers = [];
         _collection.each(connected, function (user) {
-          if (users[user.uid].networks && users[user.uid].networks === currentUser.networks) { //Push to network users if both are in same network
+          if (users[user.uid].networks && users[user.uid].networks === currentUser.networks && users[user.uid].online === true) { //Push to network users if both are in same network
             networkUsers.push(user);
           }
           if (users[user.uid].online === true) {
