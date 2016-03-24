@@ -2,8 +2,8 @@ export default function () {
   let duration = 500;
 
   this.transition(
-    this.fromRoute('home'),
-    this.toRoute('signin'),
+    this.fromRoute('signin'),
+    this.toRoute('signup'),
     this.use('toLeft', {duration: duration/2}),
     this.reverse('toRight', {duration: duration/2})
   );
