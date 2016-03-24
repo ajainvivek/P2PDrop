@@ -8,6 +8,7 @@ const {
 
 export default Controller.extend({
   session: inject.service('session'),
+  spinner: inject.service('spinner'),
   pendingApprovals: 0,
   isPendingApprovals: false,
   init : function () {
@@ -45,8 +46,15 @@ export default Controller.extend({
     });
   },
   actions: {
-    invalidateSession() {
-      this.get('session').invalidate();
+    logout: function() {
+        this.get("spinner").show("app-spinner");
+        this.get('session').invalidate().then(function() {
+            this.get("spinner").hide("app-spinner");
+            this.transitionToRoute('signin');
+            if (config.locationType === "hash") { //Refresh for desktop application
+              window.location.reload(false);
+            }
+        }.bind(this));
     }
   }
 });
