@@ -112,4 +112,18 @@ h1, h2, h3, h4 {
     border-color: #74bfdd;
     color: #4f4f4f;
 }
+
+
+.badge.red {
+  background: #fa623f;
+  border-color: #fa5a35;
+  background-image: -webkit-linear-gradient(top, #fc9f8a, #fa623f);
+  background-image: -moz-linear-gradient(top, #fc9f8a, #fa623f);
+  background-image: -o-linear-gradient(top, #fc9f8a, #fa623f);
+  background-image: linear-gradient(to bottom, #fc9f8a, #fa623f);
+  position: absolute;
+  top: 0px;
+  left: 39px;
+}
+
 /************************/
