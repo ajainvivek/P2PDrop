@@ -58,7 +58,7 @@ export default Component.extend({
       };
       //Once downloaded destroy client
       torrent.on('done', function () {
-        torrent.destroy();
+        //torrent.destroy();
       });
       let throttle = run.throttle(self, updateSpeed, 10);
     });
