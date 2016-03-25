@@ -42,7 +42,7 @@ export default Component.extend({
     files.pushObject(file);
 
     let message = self.get("notify").info(name +' sent you a file ' + torrent.name);
-
+    //While downloading show loader
     torrent.on('download', function (chunkSize) {
       let changedFile = files.findProperty("guid", guid);
       let updateSpeed = function () {
@@ -56,6 +56,10 @@ export default Component.extend({
           run.cancel(throttle);
         }
       };
+      //Once downloaded destroy client
+      torrent.on('done', function () {
+        torrent.destroy();
+      });
       let throttle = run.throttle(self, updateSpeed, 10);
     });
 
