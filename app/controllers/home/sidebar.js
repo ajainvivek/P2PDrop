@@ -48,7 +48,8 @@ export default Controller.extend({
           user.online = users[user.uid].online;
           user.network = users[user.uid].network;
         });
-        self.set("connectedUsers", connected);
+        let connectedByOnline = connected.sort(function(a,b){return a.isOnline - b.isOnline}).reverse();
+        self.set("connectedUsers", connectedByOnline);
         self.set("networkUsers", networkUsers);
       });
 
