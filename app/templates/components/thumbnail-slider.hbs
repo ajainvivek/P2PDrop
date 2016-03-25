@@ -1,12 +1,15 @@
 <div class="thumbnail-slider">
   {{#each files as |file|}}
-    <div {{action "triggerActionBar" file}} class="card {{if file.selected 'selected' ''}}">
+    <div class="card {{if file.selected 'selected' ''}}">
+      <div class="delete-icon" {{action "deleteCard" file bubbles="false"}}>
+        {{paper-icon "clear" size="sm" class="delete-icon-btn"}}
+      </div>
       {{#if file.isDownloading}}
         <div class="progress-indicator">
           {{paper-progress-circular value=file.progress}}
         </div>
       {{/if}}
-      <div class="content-wrapper">
+      <div class="content-wrapper" {{action "triggerActionBar" file}}>
         <img src="images/icons/{{extension-mapping file.name}}.png" alt=""/>
         <h3>{{file.name}}</h3>
       </div>

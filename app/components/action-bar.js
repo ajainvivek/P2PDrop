@@ -20,6 +20,9 @@ export default Ember.Component.extend({
     this.set("name", data.name);
     this.set("url", data.url);
   },
+  resetSelected : function (boolean) {
+    this.set("isFileSelected", boolean);
+  },
   actions: {
 
   }

@@ -58,7 +58,7 @@ export default Controller.extend({
       let users = this.get("users");
       const uid = this.get('session.secure.uid');
 
-      if (config.locationType === "hash") { //Hack To Seed File Object for WebTorrent
+      if (config.isDesktop) { //Hack To Seed File Object for WebTorrent
         let base64 = data[0].result.split(',')[1];
         let blob = this.get("blob");
         fileObj = blob.b64toBlob(base64, data[0].file.type);
@@ -88,6 +88,10 @@ export default Controller.extend({
       let thumbnailContext = this.get("thumbnailContext");
       let actionContext = this.get("actionContext");
       thumbnailContext.appendFile.call(thumbnailContext, file, actionContext.notifyFileSelect.bind(actionContext));
+    },
+    resetSelected : function (boolean) {
+      let actionContext = this.get("actionContext");
+      actionContext.resetSelected(boolean);
     }
   }
 });

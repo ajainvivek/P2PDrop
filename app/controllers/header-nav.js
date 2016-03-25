@@ -51,7 +51,7 @@ export default Controller.extend({
         this.get('session').invalidate().then(function() {
             this.get("spinner").hide("app-spinner");
             this.transitionToRoute('signin');
-            if (config.locationType === "hash") { //Refresh for desktop application
+            if (config.isDesktop) { //Refresh for desktop application
               window.location.reload(false);
             }
         }.bind(this));

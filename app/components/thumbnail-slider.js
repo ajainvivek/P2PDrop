@@ -106,6 +106,12 @@ export default Component.extend({
     triggerActionBar : function (data) {
       this.highlightSelected(data.guid);
       this.sendAction("fileChange", data);
+    },
+    deleteCard : function (data) {
+      let files = this.get("files");
+      files.removeObject(data);
+      this.set("files", files);
+      this.sendAction("resetSelected", false);
     }
   }
 });

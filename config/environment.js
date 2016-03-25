@@ -13,7 +13,8 @@ module.exports = function(environment) {
       routeIfAlreadyAuthenticated: 'home'
     },
     fingerprint: {
-      ignore: ['images/icons']
+      ignore: ['images'],
+      exclude: ['images']
     },
     imgur: {
       clientId: '644aded71822622'
@@ -22,6 +23,7 @@ module.exports = function(environment) {
       outputFormat: 'll'
     },
     baseURL: '/',
+    isDesktop: process.env.EMBER_CLI_ELECTRON ? true : false,
     locationType: process.env.EMBER_CLI_ELECTRON ? 'hash' : 'auto',
     EmberENV: {
       FEATURES: {

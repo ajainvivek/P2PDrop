@@ -1,5 +1,5 @@
 <div class="dropzone">
-    {{thumbnail-slider class="thumbnail-slider-wrapper" thumbnailContext=thumbnailContext fileChange=(action "changeSelectedFile")}}
+    {{thumbnail-slider class="thumbnail-slider-wrapper" thumbnailContext=thumbnailContext fileChange=(action "changeSelectedFile") resetSelected=(action "resetSelected")}}
     <div class="dropzone-content">
       <div class="drop-content">
         <h2 class="header">

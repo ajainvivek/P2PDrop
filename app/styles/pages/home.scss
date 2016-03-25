@@ -165,6 +165,7 @@
             white-space: nowrap;
 
             .card {
+              position: relative;
               height: 120px;
               width: 120px;
               background: $drop-white;
@@ -175,6 +176,30 @@
               box-shadow: -1px 0px 0px 0px rgba(50, 50, 50, 0.2);
               display: inline-block;
               cursor: pointer;
+
+              .delete-icon {
+                position: absolute;
+                right: -5px;
+                top: -5px;
+                height: 20px;
+                width: 20px;
+                background: $drop-blue;
+                border-radius: 10px;
+
+                md-icon {
+                  position: absolute;
+                  right: 3px;
+                  top: 3px;
+                }
+
+                .delete-icon-btn {
+                  color: #fff;
+                }
+
+                .delete-icon-btn:hover {
+                  color: #fff;
+                }
+              }
 
               .content-wrapper {
                 padding: 10px;
