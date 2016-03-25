@@ -12,9 +12,6 @@ module.exports = function(environment) {
       routeAfterAuthentication: 'home',
       routeIfAlreadyAuthenticated: 'home'
     },
-    fingerprint: {
-      enabled : false
-    },
     imgur: {
       clientId: '644aded71822622'
     },
