@@ -4,8 +4,7 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     fingerprint: {
-      exclude: ['apple-touch-icon', 'favicon'],
-      ignore: ['images']
+      enabled: false
     }
   });
 
