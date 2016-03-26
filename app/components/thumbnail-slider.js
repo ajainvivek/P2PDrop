@@ -72,14 +72,21 @@ export default Component.extend({
     let guid = this.get("currentGUID");
     let changedFile = files.findProperty("guid", guid);
     let self = this;
-    file.getBlobURL(function (err, url) {
-      if (err) {
-        throw err;
-      }
-      changedFile.set("url", url);
+    if (typeof file.getBlobURL === "function") {
+      file.getBlobURL(function (err, url) {
+        if (err) {
+          throw err;
+        }
+        changedFile.set("url", url);
+        self.highlightSelected(guid);
+        callback(changedFile);
+      });
+    } else {
+      changedFile.set("url", file.url);
       self.highlightSelected(guid);
       callback(changedFile);
-    });
+    }
+
   },
 
   //generate guid

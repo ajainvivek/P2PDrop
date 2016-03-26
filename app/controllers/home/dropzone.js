@@ -88,7 +88,7 @@ export default Controller.extend({
     changeSelectedFile : function (file) {
       let thumbnailContext = this.get("thumbnailContext");
       let actionContext = this.get("actionContext");
-      thumbnailContext.appendFile.call(thumbnailContext, file, actionContext.notifyFileSelect.bind(actionContext));
+      actionContext.notifyFileSelect.call(actionContext, file);
     },
     resetSelected : function (boolean) {
       let actionContext = this.get("actionContext");
