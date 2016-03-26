@@ -70,11 +70,12 @@ export default Controller.extend({
         fileObj = data[0].file;
       }
 
-      webtorrent.seed(fileObj).then(function (hash) {
+      webtorrent.seed(fileObj).then(function (torrent) {
 
         users.getCurrentUser(uid).then(function (user) {
           let obj = {
-            hash : hash,
+            hash : torrent.infoHash,
+            magnetURI : torrent.magnetURI,
             name : user.name
           };
           webrtc.sendChatMessage(obj, instance);

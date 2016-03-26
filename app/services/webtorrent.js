@@ -18,7 +18,7 @@ export default Service.extend({
 		let client = this.torrentClient();
 
 		return new RSVP.Promise(function (resolve, reject) {
-			client.add("magnet:?xt=urn:btih:" + data.hash, function (torrent) {
+			client.add(data.magnetURI, function (torrent) {
 				// Got torrent metadata!
 				console.log('Client is downloading:', torrent.infoHash)
 				callback(torrent, data.name);
@@ -32,7 +32,7 @@ export default Service.extend({
 		return new RSVP.Promise(function (resolve, reject) {
 			client.seed(files, function (torrent) {
 				console.log('Client is seeding:', torrent.infoHash);
-				resolve(torrent.infoHash);
+				resolve(torrent);
 			});
 		});
 	}

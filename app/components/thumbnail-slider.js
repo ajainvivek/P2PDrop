@@ -56,7 +56,7 @@ export default Component.extend({
           run.cancel(throttle);
         }
       };
-      //Once downloaded destroy client
+      //Once downloaded destroy client //TODO
       torrent.on('done', function () {
         //torrent.destroy();
       });
