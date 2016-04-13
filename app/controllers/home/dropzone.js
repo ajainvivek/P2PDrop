@@ -14,6 +14,8 @@ export default Controller.extend({
   users : inject.service("users"),
   blob : inject.service("blob"),
   notify : inject.service("notify"),
+  senderName : "Anonymous",
+  modalContext : {},
   init : function () {
     let webrtc = this.get("webrtc");
     let webtorrent = this.get("webtorrent");
@@ -33,10 +35,13 @@ export default Controller.extend({
     webrtc.joinRoom(uid);
 
     webrtc.onMessageReceived(function (data) {
-      webtorrent.download(data.payload.message, renderCard).then(function (file) {
-        let thumbnailContext = self.get("thumbnailContext");
-        let actionContext = self.get("actionContext");
-        thumbnailContext.appendFile.call(thumbnailContext, file[0], actionContext.notifyFileSelect.bind(actionContext));
+      self.set("senderName", data.payload.message.name);
+      self.get("modalContext").open(function () {
+        webtorrent.download(data.payload.message, renderCard).then(function (file) {
+          let thumbnailContext = self.get("thumbnailContext");
+          let actionContext = self.get("actionContext");
+          thumbnailContext.appendFile.call(thumbnailContext, file[0], actionContext.notifyFileSelect.bind(actionContext));
+        });
       });
     });
   },

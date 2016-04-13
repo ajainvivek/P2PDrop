@@ -11,3 +11,6 @@
     {{file-select-drop class="dropzone-widget" onFileSelect=(action "sendFile") triggerFileSelect=(action "triggerFileSelect")}}
     {{action-bar class="action-bar-wrapper" actionContext=actionContext}}
 </div>
+{{#reveal-modal rightBtnText="Download" leftBtnText="Cancel" title="Notification" self=modalContext}}
+  <p><b>{{senderName}}</b> has shared you a file.</p>
+{{/reveal-modal}}

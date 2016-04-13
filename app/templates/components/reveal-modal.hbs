@@ -1,0 +1,24 @@
+{{#if showModalDialog}}
+  {{#liquid-tether
+    to="modal-dialog"
+    target="document.body"
+    targetModifier="visible"
+    attachment="middle center"
+    tetherClass="modal-dialog"
+    overlayClass="modal-backdrop"}}
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{title}}</h4>
+      </div>
+
+      <div class="modal-body">
+        {{yield}}
+      </div>
+
+      <div class="modal-footer">
+        {{#paper-button raised=true warn=true action="close"}}{{leftBtnText}}{{/paper-button}}
+        {{#paper-button raised=true primary=true action="callback"}}{{rightBtnText}}{{/paper-button}}
+      </div>
+    </div>
+  {{/liquid-tether}}
+{{/if}}

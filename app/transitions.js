@@ -1,3 +1,10 @@
+import { target, onOpenTether } from 'liquid-tether';
+
+const options = {
+  duration: 500,
+  easing: 'easeInOutQuint'
+};
+
 export default function () {
   let duration = 500;
 
@@ -52,6 +59,14 @@ export default function () {
     this.toValue(true),
     this.use('toLeft', {duration}),
     this.reverse('toRight', {duration})
+  );
+
+  /**** Liquid Tether Modal Transition ****/
+  this.transition(
+    target('modal-dialog'),
+    onOpenTether(),
+    this.use('tether', ['to-up', options]),
+    this.reverse('tether', ['to-down', options])
   );
 
 }
