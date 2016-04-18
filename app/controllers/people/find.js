@@ -51,7 +51,7 @@ export default Controller.extend({
   },
   postKey: function(){
     let users = this.searchQuery(this.get('name'));
-    this.set("filteredUsers", users);
+    this.set("filteredUsers", _array.take(users, 10));
   }.observes('name'),
   actions: {
     goToDetail(user) {
