@@ -1,6 +1,6 @@
 {{#liquid-if isFileSelected class="action-bar"}}
   <div class="container">
-    <button type="button" class="btn btn-primary">Preview</button>
+    <a href="{{url}}" target="_blank" type="button" class="btn btn-primary">Preview</a>
     <a href="{{url}}" download="{{name}}" type="button" class="btn btn-primary">Download</a>
   </div>
 {{else}}
