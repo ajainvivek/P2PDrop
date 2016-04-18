@@ -34,15 +34,40 @@ export default Controller.extend( {
       update(){
         if (this.get('currentUser.name') === undefined && this.get('currentUser.name') === "") { return; }
         const uid = this.get('session.secure.uid');
+        let self = this;
         let notify = this.get("notify");
         let name = this.get("name")
         let userRef = new Firebase(config.firebase + '/users/' + uid);
+        let userConnRef = new Firebase(config.firebase + '/users/' + uid + '/friends/connected');
         //on complete state change the state of btn
         let onComplete = function (error) {
           if (error) {
             notify.alert(error.toString());
           } else {
-            notify.info("Updated");
+            //TODO: Think about better solution to update friends
+            userConnRef.once("value", function(snapshot) {
+              let connected = snapshot.val();
+              _collection.each(connected, function (user) {
+                let connRef = new Firebase(config.firebase + '/users/' + user.uid + '/friends/connected');
+                connRef.once("value", function(snapshot) {
+                  let connected = snapshot.val();
+                  _collection.each(connected, function (user, index) {
+                    if (user.uid === uid) {
+                      user.name = self.get('currentUser.name');
+                      user.profilePic = self.get('profilePic');
+                      user.gender = self.get('currentUser.gender');
+                    }
+                  });
+                  let friendsConnRef = new Firebase(config.firebase + '/users/' + user.uid + '/friends');
+                  friendsConnRef.update({
+                    connected : connected
+                  }, function () {
+                    //console.log("updated");
+                  });
+                });
+              });
+            });
+            notify.info("Profile Updated");
           }
         };
 
