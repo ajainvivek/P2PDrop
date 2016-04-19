@@ -9,13 +9,13 @@
 
 <h4 align="center">Securely share files between peers powered by WebRTC</h4>
 
+[![Join the chat at https://gitter.im/ajainvivek/P2PDrop](https://badges.gitter.im/ajainvivek/P2PDrop.svg)](https://gitter.im/ajainvivek/P2PDrop?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 P2PDrop is a secure file sharing application which allows you to transfer files directly between devices, without having to upload to any server. It uses [WebRTC](http://www.webrtc.org)(data channels) powered [WebTorrent](https://webtorrent.io/) for peer-to-peer file transport, [SimpleWebRTC](https://github.com/andyet/SimpleWebRTC) for exchange of hash handshake between peers and [Firebase](https://www.firebase.com) for presence management.
 
 P2PDrop requires internet connection to establish handshake between peers. It lets you securely share large files without even uploading to server therefore you need not worry about data leakage.
 
 ### Supported browsers & desktop
-
-[![Join the chat at https://gitter.im/ajainvivek/P2PDrop](https://badges.gitter.im/ajainvivek/P2PDrop.svg)](https://gitter.im/ajainvivek/P2PDrop?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 * Chrome (desktop and Android) 33+
 * Windows, Mac & Linux
 
