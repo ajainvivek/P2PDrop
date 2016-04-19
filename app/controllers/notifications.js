@@ -71,8 +71,12 @@ export default Controller.extend({
       let friends = currentUser.friends || {};
       let connected = friends.connected || [];
       let pending = friends.pending || [];
+      let isUserConnected = _array.findIndex(connected, function(o) { return o.uid === user.uid ; });
 
       if (state === "approve") {
+        if (isUserConnected > 0) { //if user is already connected then dont add to the friends list
+          return;
+        }
         //Move to connected friends & remove from pending list
         connected.push(user);
         pending = _collection.reject(pending, {email : user.email});
