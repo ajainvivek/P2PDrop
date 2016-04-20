@@ -16,7 +16,8 @@ export default Controller.extend(
       }
     },
     actions: {
-      signin() {
+      signin(e) {
+        e.preventDefault();
         this.get('spinner').show('app-spinner');
         this.authenticateUser(this.get('email'), this.get('password'));
       },

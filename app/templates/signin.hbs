@@ -1,13 +1,15 @@
 {{#paper-card class="md-whiteframe-z1 signin-wrapper"}}
    {{#paper-card-content}}
-     {{paper-input label="Email (required)" type="email" value=email icon="email" icon-class="email" required=true customValidation=emailValidation}}
-     {{paper-input value=password label="Password (required)" type="password" icon="https" icon-class="https" required=true}}
-     <div class="center">
-       {{#paper-button raised=true action="signin" class="btn-width"}}Log In{{/paper-button}}
-     </div>
-     <h4 class="center">OR</h4>
-     <div class="center">
-       {{#paper-button raised=true action="goToSignUp" class="btn-width" primary=true}}Register Now{{/paper-button}}
-     </div>
+    <form class="" onsubmit={{action "signin"}}>
+      {{paper-input label="Email (required)" type="email" value=email icon="email" icon-class="email" required=true customValidation=emailValidation}}
+      {{paper-input value=password label="Password (required)" type="password" icon="https" icon-class="https" required=true}}
+      <div class="center">
+        {{#paper-button raised=true type="submit" class="btn-width"}}Log In{{/paper-button}}
+      </div>
+      <h4 class="center">OR</h4>
+      <div class="center">
+        {{#paper-button raised=true action="goToSignUp" class="btn-width" primary=true}}Register Now{{/paper-button}}
+      </div>
+    </form>
    {{/paper-card-content}}
  {{/paper-card}}
