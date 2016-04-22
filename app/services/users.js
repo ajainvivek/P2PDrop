@@ -34,4 +34,20 @@ export default Service.extend({
       });
     });
   },
+  sendVerificationCode : function (uid) {
+    return new Promise(function (resolve, reject) {
+      $.ajax({
+        method: "POST",
+        url: "http://localhost:8000/email",
+        dataType: "json",
+        data: { uid : uid },
+        success: function (data) {
+          resolve(data);
+        },
+        fail: function (error) {
+          reject(error);
+        }
+      });
+    });
+  }
 });

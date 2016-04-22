@@ -12,5 +12,6 @@ export default Model.extend({
   gender: attr('string'),
   email: attr('string'),
   friends: attr(),
-  networks: attr()
+  networks: attr(),
+  isVerified: attr()
 });

@@ -5,4 +5,28 @@
   <div id="dropzone-wrapper">
     {{render 'home/dropzone'}}
   </div>
+  {{#if isNotVerified}}
+    {{#liquid-tether
+      to="modal-dialog"
+      target="document.body"
+      targetModifier="visible"
+      attachment="middle center"
+      tetherClass="modal-dialog"
+      overlayClass="modal-backdrop"}}
+        {{#paper-card class="md-whiteframe-z1 signin-wrapper"}}
+           {{#paper-card-content}}
+            <form class="" onsubmit={{action "verify"}}>
+              {{paper-input value=code label="Verification Code (required)" type="text" icon="https" icon-class="https" required=true}}
+              <div class="center">
+                {{#paper-button raised=true type="submit" class="btn-width"}}Verify{{/paper-button}}
+              </div>
+              <h4 class="center">OR</h4>
+              <div class="center">
+                {{#paper-button raised=true action="resend" class="btn-width" primary=true}}Resend{{/paper-button}}
+              </div>
+            </form>
+           {{/paper-card-content}}
+         {{/paper-card}}
+      {{/liquid-tether}}
+  {{/if}}
 </div>

@@ -3,7 +3,7 @@ import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 const {
   Route,
   RSVP
-  } = Ember;
+} = Ember;
 
 export default Route.extend(
   ApplicationRouteMixin, {

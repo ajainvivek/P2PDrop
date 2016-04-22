@@ -11,6 +11,7 @@ export default Controller.extend(
   LoginUser, {
     notify: inject.service('notify'),
     spinner: inject.service('spinner'),
+    users: inject.service('users'),
     randomProfilePics : {
       male : [{
         link : 'https://i.imgur.com/70XDfct.png'
@@ -79,6 +80,7 @@ export default Controller.extend(
       signup(){
         if (this.get('name') === undefined) { return; }
         const firebase = new Firebase(config.firebase);
+        let self = this;
         this.get('spinner').show('app-spinner');
         firebase.createUser(this.userValues(), (error, userData) => {
             if (error) {
@@ -95,9 +97,23 @@ export default Controller.extend(
                   connected : [],
                   pending : []
                 },
-                networks : {}
+                networks : {},
+                isVerified : false
               }).save();
-              this.authenticateUser(this.get('email'), this.get('password'));
+              this.authenticateUser(this.get('email'), this.get('password'), function (callback) {
+                self.get("users").sendVerificationCode(userData.uid).then(function (data) {
+                  if (data.status === "success") {
+                    self.get('notify').info("Verification mail sent!");
+                    callback(data.guid);
+                  } else {
+                    self.get('notify').info("Verification mail not sent!");
+                    self.get('spinner').hide('app-spinner');
+                  }
+                }, function () {
+                  self.get('notify').info("Verification mail not sent!");
+                  self.get('spinner').hide('app-spinner');
+                })
+              });
             }
         });
       },
