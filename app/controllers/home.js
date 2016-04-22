@@ -50,6 +50,7 @@ export default Controller.extend({
       self.get('spinner').show('app-spinner');
       this.get("users").sendVerificationCode(uid).then(function (data) {
         if (data.status === "success") {
+          self.set("verificationCode", data.guid);
           self.get('notify').info("Verification mail sent!");
         } else {
           self.get('notify').info("Verification mail not sent!");

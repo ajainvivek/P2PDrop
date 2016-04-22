@@ -38,7 +38,7 @@ export default Service.extend({
     return new Promise(function (resolve, reject) {
       $.ajax({
         method: "POST",
-        url: "http://localhost:8000/email",
+        url: "https://p2pdrop-service.herokuapp.com/email",
         dataType: "json",
         data: { uid : uid },
         success: function (data) {
