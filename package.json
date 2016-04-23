@@ -57,5 +57,30 @@
     "liquid-fire": "0.22.0",
     "liquid-tether": "1.0.0"
   },
+  "ember-electron": {
+    "copy-files": [
+      "package.json",
+      "main/*"
+    ],
+    "name": "P2PDrop",
+    "app-bundle-id": "",
+    "app-category-type": null,
+    "app-copyright": "Copyright (c) 2016 Chaicode",
+    "helper-bundle-id": null,
+    "icon": "images/icons/p2pdrop",
+    "overwrite": true,
+    "sign": null,
+    "strict-ssl": null,
+    "osx-sign": {
+      "identity": "Ajain Vivek"
+    },
+    "version-string": {
+      "CompanyName": "Chaicode",
+      "FileDescription": "P2PDROP for Desktops",
+      "ProductName": "P2PDrop",
+      "InternalName": "Chaicode"
+    },
+    "version": "0.35.4"
+  },
   "main": "electron.js"
 }

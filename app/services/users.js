@@ -34,13 +34,13 @@ export default Service.extend({
       });
     });
   },
-  sendVerificationCode : function (uid) {
+  sendVerificationCode : function (uid, email) {
     return new Promise(function (resolve, reject) {
       $.ajax({
         method: "POST",
         url: "https://p2pdrop-service.herokuapp.com/email",
         dataType: "json",
-        data: { uid : uid },
+        data: { uid : uid, email: email },
         success: function (data) {
           resolve(data);
         },

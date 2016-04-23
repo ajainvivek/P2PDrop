@@ -101,7 +101,7 @@ export default Controller.extend(
                 isVerified : false
               }).save();
               this.authenticateUser(this.get('email'), this.get('password'), function (callback) {
-                self.get("users").sendVerificationCode(userData.uid).then(function (data) {
+                self.get("users").sendVerificationCode(userData.uid, self.get('email')).then(function (data) {
                   if (data.status === "success") {
                     self.get('notify').info("Verification mail sent!");
                     callback(data.guid);
