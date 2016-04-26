@@ -35,8 +35,9 @@ export default Controller.extend({
     });
   }.on("init"),
   //Search Query
-  searchQuery(chars) {
+  searchQuery(query) {
     let users = this.get("users").getUsers();
+    let chars = query.toLowerCase();
     let filtered = _collection.filter(users, function (user) {
       let name = user.name.toLowerCase();
       if (name.search(chars) >= 0) {

@@ -26,6 +26,22 @@ export default Controller.extend({
     });
     this.updateUsers();
   },
+  isNoNetworkUsers : function () {
+    let networkUsers = this.get("networkUsers");
+    if (networkUsers.length > 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }.property('networkUsers'),
+  isNoConnectedUsers : function () {
+    let connectedUsers = this.get("connectedUsers");
+    if (connectedUsers.length > 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }.property('connectedUsers'),
   updateUsers : function () {
     const uid = this.get('session.secure.uid');
     let self = this;
@@ -88,6 +104,9 @@ export default Controller.extend({
       this.set("webrtcInstance", instance);
       webrtc.joinRoom(user.uid, instance);
       this.set("selectedList", selectedList);
+    },
+    goToFind : function () {
+      this.transitionToRoute('people.find');
     }
   }
 });

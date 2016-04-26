@@ -15,6 +15,9 @@
   </ul>
 
   <ul class="sidebar-nav" id="sidebar">
+    {{#if isNoConnectedUsers}}
+      <li>{{#paper-button raised=true primary=true action="goToFind" class="btn-width"}}Add Peers{{/paper-button}}</li>
+    {{/if}}
     {{#liquid-if isContactSelected class="slide"}}
       {{#each connectedUsers as |connectedUser|}}
         <li {{action "selectUser" connectedUser}}>
@@ -30,6 +33,9 @@
         </li>
       {{/each}}
     {{else}}
+      {{#if isNoNetworkUsers}}
+        <li>No users in same network</li>
+      {{/if}}
       {{#each networkUsers as |networkUser|}}
         <li {{action "selectUser" networkUser}}>
           <div class="time">
