@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <title>P2PDrop failed to load</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "Open Sans", sans-serif;
+        }
+
+        .error {
+            text-align: center;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700">
+</head>
+
+<body>
+    <div class="error">
+        <p>&#x1F626</p>
+        <p>Loading the P2PDrop failed.</p>
+        <small id="details">No error details.</small>
+    </div>
+    <script>
+        var query = location.search.substr(1);
+        var result = {};
+
+        query.split("&").forEach((part) => {
+            var item = part.split("=");
+            result[item[0]] = decodeURIComponent(item[1]);
+        });
+
+        if (result && result.error) {
+            var errorElement = document.getElementById('details');
+            errorElement.textContent = result.error;
+        }
+    </script>
+</body>
+
+</html>

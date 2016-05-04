@@ -20,7 +20,6 @@
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.1.2",
-    "electron-prebuilt": "0.35.4",
     "ember-cli": "1.13.8",
     "ember-cli-app-version": "0.5.0",
     "ember-cli-babel": "^5.1.3",
@@ -45,7 +44,6 @@
     "ember-cli-uglify": "^1.2.0",
     "ember-data": "1.13.8",
     "ember-disable-proxy-controllers": "^1.0.0",
-    "ember-electron": "1.1.1",
     "ember-export-application-global": "^1.0.3",
     "ember-imgur": "0.1.0",
     "ember-lodash": "0.0.6",
@@ -63,14 +61,13 @@
       "main/*"
     ],
     "name": "P2PDrop",
-    "app-bundle-id": "",
+    "app-bundle-id": "com.chaicode.p2pdrop",
     "app-category-type": null,
     "app-copyright": "Copyright (c) 2016 Chaicode",
     "helper-bundle-id": null,
-    "icon": "images/icons/p2pdrop",
+    "icon": "assets/icons/ghost",
     "overwrite": true,
     "sign": null,
-    "strict-ssl": null,
     "osx-sign": {
       "identity": "Ajain Vivek"
     },
@@ -80,7 +77,13 @@
       "ProductName": "P2PDrop",
       "InternalName": "Chaicode"
     },
-    "version": "0.35.4"
+    "version": "0.37.7"
   },
-  "main": "electron.js"
+  "main": "main/entry.js",
+  "dependencies": {
+    "electron-prebuilt": "^0.37.7",
+    "electron-rebuild": "^1.1.3",
+    "ember-electron": "^1.4.1",
+    "electron-window-state": "^2.0.0"
+  }
 }
