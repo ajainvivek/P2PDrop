@@ -6,7 +6,11 @@
       </div>
       {{#if file.isDownloading}}
         <div class="progress-indicator">
-          {{paper-progress-circular value=file.progress}}
+          <div id="liquid-bind-progress">
+            <div class="progress-wrapper">
+              {{liquid-bind file.progress}}
+            </div>
+          </div>
         </div>
       {{/if}}
       <div class="content-wrapper" {{action "triggerActionBar" file}}>
