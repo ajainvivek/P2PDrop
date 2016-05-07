@@ -46,8 +46,8 @@ ember serve
 ember electron:generate
 ```
 * P2P Email Server & Signalling Server repositories
-[P2P Email Server](https://github.com/ajainvivek/P2PServer)
-[P2P Signalling Server](https://github.com/ajainvivek/P2PSignalling)
+ * [P2P Email Server](https://github.com/ajainvivek/P2PServer)
+ * [P2P Signalling Server](https://github.com/ajainvivek/P2PSignalling)
 
 ### Supported browsers & desktop
 * Chrome (desktop and Android) 33+
