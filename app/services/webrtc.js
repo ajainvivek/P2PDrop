@@ -1,6 +1,7 @@
 /**** Simple WebRTC Implementation ******/
 
 import Ember from "ember";
+import config from '../config/environment';
 
 export default Ember.Service.extend({
   webrtc: null,
@@ -22,7 +23,7 @@ export default Ember.Service.extend({
         socketio: {
           'force new connection':true
         },
-        url: "https://p2pdrop-signalling.herokuapp.com/"
+        url: config.signallingServer
     }));
   },
 

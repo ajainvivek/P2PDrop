@@ -15,13 +15,45 @@ P2PDrop is a secure file sharing application which allows you to transfer files 
 
 P2PDrop requires internet connection to establish handshake between peers. It lets you securely share large files without even uploading to server therefore you need not worry about data leakage.
 
+### Setup & Installation Steps
+* Once the repository is cloned do npm install & bower install.
+* If you are using latest version of node and get script error in terminal then paste below script in terminal
+```js
+git clone git://github.com/creationix/nvm.git ~/.nvm
+printf "\n\n# NVM\nif [ -s ~/.nvm/nvm.sh ]; then\n\tNVM_DIR=~/.nvm\n\tsource ~/.nvm/nvm.sh\nfi" >> ~/.bashrc
+NVM_DIR=~/.nvm
+source ~/.nvm/nvm.sh
+```
+* Configuration - go to config/environment.js update the config
+```js
+/**
+* Set your custom configuration here
+**/
+var config = {
+  firebase : "", //firebase url
+  imgur : "", //imgur client id
+  googleAnalytics : "", //google analytics is
+  emailServer : "", //custom email server
+  signallingServer : "" //custom signalling server
+};
+```
+* Run the application on browsers
+```js
+ember serve
+```
+* Generate electron builds
+```js
+ember electron:generate
+```
+
+
 ### Supported browsers & desktop
 * Chrome (desktop and Android) 33+
 * Windows, Mac & Linux
 
 ### Note
-* P2PDrop is currently beta version.
-* Any bugs observed. Please report it so we can get it fixed for you. 
+* P2PDrop is currently developer version.
+* Any bugs observed. Please report it so we can get it fixed for you.
 
 ## License
 

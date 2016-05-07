@@ -1,11 +1,24 @@
 /* jshint node: true */
 
+/**
+* Set your custom configuration here
+**/
+var config = {
+  firebase : "https://p2pdrop.firebaseio.com/",
+  imgur : "644aded71822622",
+  googleAnalytics : "UA-76504263-1",
+  emailServer : "https://p2pdrop-service.herokuapp.com/email",
+  signallingServer : "https://p2pdrop-signalling.herokuapp.com/"
+};
+
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'p2pdrop',
     environment: environment,
+    signallingServer: config.signallingServer,
+    emailServer: config.emailServer,
     contentSecurityPolicy: { 'connect-src': "'self' https://auth.firebase.com wss://*.firebaseio.com" },
-    firebase: 'https://p2pdrop.firebaseio.com/',
+    firebase: config.firebase,
     'simple-auth': {
       serverTokenRevocationPoint: '/revoke',
       authenticationRoute: 'signin',
@@ -13,7 +26,7 @@ module.exports = function(environment) {
       routeIfAlreadyAuthenticated: 'home'
     },
     imgur: {
-      clientId: '644aded71822622'
+      clientId: config.imgur
     },
     moment: {
       outputFormat: 'll'
@@ -66,7 +79,7 @@ module.exports = function(environment) {
     ENV.locationType = 'hash';
     ENV.baseURL = '/p2pdrop/';
     ENV.googleAnalytics = {
-      webPropertyId: 'UA-76504263-1'
+      webPropertyId: config.googleAnalytics
     };
   }
 
