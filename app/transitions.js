@@ -61,6 +61,11 @@ export default function () {
     this.reverse('toRight', {duration})
   );
 
+  this.transition(
+    this.childOf('#liquid-bind-progress'),
+    this.use('toUp')
+  );
+
   /**** Liquid Tether Modal Transition ****/
   this.transition(
     target('modal-dialog'),
@@ -68,5 +73,7 @@ export default function () {
     this.use('tether', ['to-up', options]),
     this.reverse('tether', ['to-down', options])
   );
+
+
 
 }

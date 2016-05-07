@@ -18,7 +18,7 @@ export default Component.extend({
 
   //Update the download/upload information
   updateSpeed : function (torrent, client) {
-    var progress = (100 * torrent.progress).toFixed(1);
+    var progress = Math.round((100 * torrent.progress).toFixed(1));
     return {
       peers : torrent.swarm.wires.length,
       progress : progress
@@ -37,7 +37,7 @@ export default Component.extend({
       url: "",
       selected: false,
       isDownloading: true,
-      progress: 0
+      progress: "0%"
     });
     files.pushObject(file);
 
@@ -47,7 +47,7 @@ export default Component.extend({
       let changedFile = files.findProperty("guid", guid);
       let updateSpeed = function () {
         let update = self.updateSpeed(torrent);
-        changedFile.set("progress", update.progress);
+        changedFile.set("progress", update.progress + "%");
         if (parseInt(update.progress) === 100) {
           run.later(self, function () {
             message.set('visible', false);

@@ -119,11 +119,14 @@
             height: 100px !important;
             .thumbnail-slider {
               .progress-indicator {
-                height: 80px;
-                width: 80px;
+                height: 80px !important;
+                width: 80px !important;
                 md-progress-circular {
                   margin-top: -10px;
                   margin-left: -10px;
+                }
+                #liquid-bind-progress {
+                  top: 12px !important;
                 }
               }
 
@@ -209,9 +212,34 @@
                 padding: 10px;
               }
 
+              #liquid-bind-progress {
+                font-size: 16px;
+                line-height: 16px;
+                text-align: center;
+                position: absolute;
+                top: 30px;
+                color: $drop-blue;
+                font-weight: bold;
+                width: 100%;
+                .liquid-outlet {
+            	    display: inline-block;
+            	    vertical-align: top;
+                }
+                .progress-wrapper {
+                    /* This prevents a slight horizontal wobble in firefox. */
+                    width: 60px;
+                    height: 60px;
+                    line-height: 60px;
+                    margin: 0px auto;
+                    background: #CECECE;
+                    border-radius: 30px;
+                    border: 2px solid $drop-green;
+                }
+              }
+
               .progress-indicator {
                 position: absolute;
-                background: rgba(152, 158, 146, 0.2);
+                background: rgba(143, 146, 140, 0.5);
                 height: 120px;
                 width: 120px;
                 md-progress-circular {
