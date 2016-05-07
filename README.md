@@ -43,7 +43,7 @@ ember serve
 ```
 * Generate electron builds
 ```js
-ember electron:generate
+ember electron:package
 ```
 * P2P Email Server & Signalling Server repositories
  * [P2P Email Server](https://github.com/ajainvivek/P2PServer)
