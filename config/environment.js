@@ -40,7 +40,17 @@ module.exports = function(environment) {
         // e.g. 'with-controller': true
       }
     },
-
+    serviceWorker : {
+      enabled: true,
+      debug: true,
+      excludePaths: ['manifest.appcache']
+    },
+    manifest : {
+      enabled: true,
+      appcacheFile: '/manifest.appcache',
+      excludePaths: ['index.html', 'tests/index.html', 'robots.txt', 'crossdomain.xml', 'testem.js'],
+      showCreateDate: true
+    },
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
@@ -54,6 +64,7 @@ module.exports = function(environment) {
       'font-src': "'self' https://fonts.gstatic.com"
     }
   };
+
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
@@ -76,6 +87,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV.serviceWorker.debug = false;
     ENV.locationType = 'hash';
     ENV.baseURL = '/p2pdrop/';
     ENV.googleAnalytics = {
