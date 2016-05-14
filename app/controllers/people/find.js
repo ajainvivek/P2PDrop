@@ -22,7 +22,7 @@ export default Controller.extend({
     this.get("users").getCurrentUser(uid).then(function (user) {
       let email = user.email;
       new Firebase(config.firebase + "users").orderByChild('name')
-      .once('value', function(snap){
+      .on('value', function(snap){
           let usersList = snap.val();
           let users = _object.transform(usersList, function(memo, val, key) {
             if (val.name && val.email !== email) {
