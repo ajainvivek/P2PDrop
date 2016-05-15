@@ -37,6 +37,7 @@ export default Controller.extend({
         let friends = user.friends || {};
         let pending = friends.pending || [];
         if (user.friends && user.friends.pending && user.friends.pending.length) {
+          self.set("pendingApprovals", pending.length);
           self.set("isPendingApprovals", true);
         } else {
           self.set("isPendingApprovals", false);
