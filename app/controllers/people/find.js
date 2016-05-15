@@ -30,7 +30,7 @@ export default Controller.extend({
             }
           }, []);
           self.get("users").setUsers(users);
-          self.set("filteredUsers", _array.take(users, 10));
+          self.set("filteredUsers", _collection.sample(users, 10));
       });
     });
   }.on("init"),
