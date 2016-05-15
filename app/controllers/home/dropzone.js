@@ -1,13 +1,15 @@
 import Ember from "ember";
 import config from '../../config/environment';
+import PrettyBytes from '../../mixins/pretty-bytes';
 
 const {
   Controller,
+  run,
   Logger,
   inject
 } = Ember;
 
-export default Controller.extend({
+export default Controller.extend(PrettyBytes, {
   sidebar: inject.controller("home.sidebar"),
   webtorrent : inject.service(),
   webrtc : inject.service(),
@@ -61,6 +63,8 @@ export default Controller.extend({
       let instance = this.get("sidebar").webrtcInstance;
       let fileObj;
       let users = this.get("users");
+      let self = this;
+      let notify = this.get("notify");
       const uid = this.get('session.secure.uid');
 
       if (config.isDesktop) { //Hack To Seed File Object for WebTorrent
@@ -76,6 +80,32 @@ export default Controller.extend({
       }
 
       webtorrent.seed(fileObj).then(function (torrent) {
+
+        // let progressInfo = '<b>Waiting for user to accept file.</b><br><br> '
+        // + '<b>File Name:</b> ' + torrent.name + '<br> '
+        // + '<b>Total Size:</b> ' + self.prettyBytes(torrent.info.length)  + '<br> '
+        // + '<b>Peers:</b> ' + torrent.numPeers + '<br> '
+        // + '<b>Download speed:</b> ' + self.prettyBytes(torrent.client.downloadSpeed) + '/s  <br>' +
+        // '<b>Upload speed:</b> ' + self.prettyBytes(torrent.client.uploadSpeed) + '/s';
+        //
+        // let progressInfoNotify = notify.info({ html: progressInfo , closeAfter: null});
+        //
+        // torrent.on('upload', function (bytes) {
+        //   progressInfo = '<b>File Name:</b> ' + torrent.name + '<br> '
+        //   + '<b>Total Size:</b> ' + self.prettyBytes(torrent.info.length)  + '<br> '
+        //   + '<b>Peers:</b> ' + torrent.numPeers + '<br> '
+        //   + '<b>Download speed:</b> ' + self.prettyBytes(torrent.client.downloadSpeed) + '/s  <br>' +
+        //   '<b>Upload speed:</b> ' + self.prettyBytes(torrent.client.uploadSpeed) + '/s';
+        //   let updateSpeed = function () {
+        //     progressInfoNotify.set("html", progressInfo);
+        //     let progress = Math.round((100 * torrent.client.progress).toFixed(1))
+        //     if (parseInt(progress) === 100) {
+        //       progressInfoNotify.set("visible", false);
+        //       run.cancel(throttle);
+        //     }
+        //   };
+        //   let throttle = run.throttle(self, updateSpeed, 10);
+        // });
 
         users.getCurrentUser(uid).then(function (user) {
           let obj = {
