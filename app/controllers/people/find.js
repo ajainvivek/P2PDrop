@@ -38,7 +38,7 @@ export default Controller.extend({
   searchQuery(query) {
     let users = this.get("users").getUsers();
     let chars = query.toLowerCase();
-    let filtered = _collection.filter(users, function (user) {
+    let filteredName = _collection.filter(users, function (user) {
       let name = user.name.toLowerCase();
       if (name.search(chars) >= 0) {
         user.index = user.name.search(chars);
@@ -47,6 +47,16 @@ export default Controller.extend({
         return false;
       }
     });
+    let filteredEmail = _collection.filter(users, function (user) {
+      let name = user.email.toLowerCase();
+      if (name.search(chars) >= 0) {
+        user.index = user.name.search(chars);
+        return true;
+      } else {
+        return false;
+      }
+    });
+    let filtered = _array.union(filteredName, filteredEmail);
     let ordered = _collection.sortBy(filtered, ['index']);
     return ordered;
   },
