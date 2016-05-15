@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import PrettyBytes from '../mixins/pretty-bytes';
 import _ from 'lodash';
 
 const {
@@ -7,7 +8,7 @@ const {
   inject
 } = Ember;
 
-export default Component.extend({
+export default Component.extend(PrettyBytes, {
   files: [],
   currentGUID: null,
   notify: inject.service("notify"),
@@ -30,6 +31,7 @@ export default Component.extend({
     let files = this.get("files");
     let guid = this.guid();
     let self = this;
+    let notify = this.get("notify");
     this.set("currentGUID", guid);
     let file = Ember.Object.create({
       name: torrent.name,
@@ -41,25 +43,41 @@ export default Component.extend({
     });
     files.pushObject(file);
 
+    let progressInfo = '<b>File Name:</b> ' + torrent.name + '<br> '
+    + '<b>Total Size:</b> ' + self.prettyBytes(torrent.info.length)  + '<br> '
+    + '<b>Peers:</b> ' + torrent.numPeers + '<br> '
+    + '<b>Download speed:</b> ' + self.prettyBytes(torrent.client.downloadSpeed) + '/s  <br>' +
+    '<b>Upload speed:</b> ' + self.prettyBytes(torrent.client.uploadSpeed) + '/s';
+
+    let progressInfoNotify = notify.info({ html: progressInfo , closeAfter: null});
+
     let message = self.get("notify").info(name +' sent you a file ' + torrent.name);
     //While downloading show loader
     torrent.on('download', function (chunkSize) {
       let changedFile = files.findProperty("guid", guid);
+      progressInfo = progressInfo = '<b>File Name:</b> ' + torrent.name + '<br> '
+      + '<b>Total Size:</b> ' + self.prettyBytes(torrent.info.length)  + '<br> '
+      + '<b>Peers:</b> ' + torrent.numPeers + '<br> '
+      + '<b>Download speed:</b> ' + self.prettyBytes(torrent.client.downloadSpeed) + '/s  <br>' +
+      '<b>Upload speed:</b> ' + self.prettyBytes(torrent.client.uploadSpeed) + '/s';
+
       let updateSpeed = function () {
         let update = self.updateSpeed(torrent);
+        progressInfoNotify.set("html", progressInfo);
         changedFile.set("progress", update.progress + "%");
         if (parseInt(update.progress) === 100) {
           run.later(self, function () {
             message.set('visible', false);
           }, 3000);
           changedFile.set("isDownloading", false);
+          progressInfoNotify.set('visible', false);
           run.cancel(throttle);
         }
       };
       //Once downloaded destroy client //TODO
-      torrent.on('done', function () {
+      //torrent.on('done', function () {
         //torrent.destroy();
-      });
+      //});
       let throttle = run.throttle(self, updateSpeed, 10);
     });
 
