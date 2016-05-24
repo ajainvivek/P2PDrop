@@ -19,6 +19,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "babel-eslint": "^6.0.4",
     "broccoli-asset-rev": "^2.1.2",
     "broccoli-manifest": "0.0.7",
     "broccoli-serviceworker": "0.1.0",
@@ -28,6 +29,7 @@
     "ember-cli-bootstrap-sassy": "0.5.1",
     "ember-cli-content-security-policy": "0.4.0",
     "ember-cli-dependency-checker": "^1.0.1",
+    "ember-cli-eslint": "1.4.0",
     "ember-cli-github-pages": "0.0.8",
     "ember-cli-google-analytics": "^1.5.0",
     "ember-cli-htmlbars": "0.7.9",
@@ -39,6 +41,7 @@
     "ember-cli-qunit": "^1.0.0",
     "ember-cli-release": "0.2.3",
     "ember-cli-sass": "5.3.0",
+    "ember-cli-sass-lint": "1.0.1",
     "ember-cli-simple-auth": "0.8.0",
     "ember-cli-simple-auth-firebase": "1.0.5",
     "ember-cli-spinner": "0.0.7",
@@ -54,6 +57,7 @@
     "ember-paper": "0.2.11",
     "ember-watson": "0.7.0",
     "emberfire": "1.6.4",
+    "eslint": "^2.10.2",
     "liquid-fire": "0.22.0",
     "liquid-tether": "1.0.0"
   },

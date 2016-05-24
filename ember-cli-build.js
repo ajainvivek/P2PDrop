@@ -5,6 +5,11 @@ module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     fingerprint: {
       enabled: false
+    },
+    sassLint: {
+      configPath: '.sass-lint.yml',
+      shouldThrowExceptions: true,
+      shouldLog: false
     }
   });
 
